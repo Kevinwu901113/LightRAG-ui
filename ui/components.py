@@ -60,9 +60,9 @@ def create_file_upload_section(custom_kg_folder: str, custom_upload_folder: str)
     if not os.path.exists(custom_kg_folder):
         try:
             os.makedirs(custom_kg_folder)
-            st.info(f"已创建知识库路径：{custom_kg_folder}")
+            st.toast(f"已创建知识库路径：{custom_kg_folder}", icon="ℹ️")
         except Exception as e:
-            st.error(f"创建知识库路径失败：{str(e)}")
+            st.toast(f"创建知识库路径失败：{str(e)}", icon="⚠️")
 
     uploaded_files = st.file_uploader("选择文件上传（支持多文件）", accept_multiple_files=True)
     
@@ -103,17 +103,7 @@ def create_control_buttons():
     with col_apply:
         st.button("应用", type="primary", key="run_query_button")
 
-def reset_session_state():
-    """重置会话状态"""
-    keys_to_delete = [
-        'entity_value', 'relation_value', 'doc_value',
-        'use_knowledge_base', 'query_mode', 'llm_model',
-        'unlimited_entity', 'unlimited_relation', 'unlimited_doc',
-        'show_settings', 
-    ]
-    for key in keys_to_delete:
-        if key in st.session_state:
-            del st.session_state[key]
+# 移除重复的reset_session_state函数，使用ui.layout中的reset_session_state
 
 def create_knowledge_base_settings() -> Dict[str, Any]:
     """创建知识库相关设置"""

@@ -4838,5 +4838,17 @@
   "1802d42c8bc4e83b2734a2b66fd68f9c": {
     "return": "```json\n{\n  \"high_level_keywords\": [\"查询\", \"关键词分类\"],\n  \"low_level_keywords\": [\"高级关键字\", \"低级关键字\", \"JSON格式输出\"]\n}\n```",
     "model": "qwen2.5:latest"
+  },
+  "6a9c68d335f17fbcab0f6c5e8e657343": {
+    "return": "```json\n{\n  \"high_level_keywords\": [\"身份\", \"存在\"],\n  \"low_level_keywords\": []\n}\n```",
+    "model": "qwen2.5:latest"
+  },
+  "885d568361d8547e240b3213cef2e6ce": {
+    "return": "我是您查询公明镇相关信息时的助手。我可以帮助您整理并总结关于公明镇的历史、地理、社会活动等方面的信息。如果您有关于公明镇的问题，请告诉我，我会根据提供的数据为您详细解答。",
+    "model": "qwen2.5:latest"
+  },
+  "fa486257f51f42ffaa65e41a59543e39": {
+    "return": "您好！请问有什么我可以帮助您的吗？如果您有关于公明镇的问题，可以随时询问。比如公明镇的历史、地理信息、经济发展等情况都可以讨论哦。",
+    "model": "qwen2.5:latest"
   }
 }

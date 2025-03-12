@@ -16,12 +16,26 @@ def extract_text_from_docs(upload_folder: str) -> List[bytes]:
     """从文档中提取文本"""
     text_content = []
     abs_upload_path = os.path.abspath(upload_folder)
+    supported_extensions = [".docx", ".pdf", ".txt", ".doc"]
     
-    for root, _, files in os.walk(abs_upload_path):
-        for f in files:
-            if f.endswith(".docx"):
-                fp = os.path.join(root, f)
-                text_content.append(textract.process(fp))
+    try:
+        for root, _, files in os.walk(abs_upload_path):
+            for f in files:
+                file_ext = os.path.splitext(f)[1].lower()
+                if file_ext in supported_extensions:
+                    fp = os.path.join(root, f)
+                    try:
+                        text_content.append(textract.process(fp))
+                    except Exception as e:
+                        st.warning(f"处理文件 '{f}' 时出错: {str(e)}")
+                        continue
+                else:
+                    st.warning(f"不支持的文件类型: {f}")
+    except Exception as e:
+        st.error(f"遍历文件夹时出错: {str(e)}")
+    
+    if not text_content:
+        st.warning("没有找到可处理的文档")
     
     return text_content
 

@@ -15,66 +15,7 @@ WORKING_DIR1 = "tem"
 UPLOAD_FOLDER = "uploads"
 DEFAULT_RECALL_COUNT = 5
 
-def display_conversation():
-    """显示当前会话的对话历史"""
-    # 添加自定义CSS样式
-    st.markdown("""
-    <style>
-    /* 用户气泡样式 */
-    .user-bubble {
-        background-color: #e6f7ff;
-        border-radius: 15px;
-        padding: 10px 15px;
-        margin-bottom: 10px;
-    }
-    
-    /* 机器人气泡样式 */
-    .bot-bubble {
-        background-color: #f0f0f0;
-        border-radius: 15px;
-        padding: 10px 15px;
-        margin-bottom: 10px;
-    }
-    
-    /* 修复滚动条问题 */
-    .stApp {
-        padding-bottom: 6rem !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
-    # 检查是否有对话历史
-    if 'conversation' not in st.session_state or not st.session_state.conversation:
-        st.info("没有对话历史，请开始一个新的对话。")
-        return
-    
-    # 遍历对话历史并显示
-    for message in st.session_state.conversation:
-        # 显示用户问题
-        with st.chat_message("user"):
-            st.markdown(f'<div class="user-bubble">{message.get("question", "")}</div>', unsafe_allow_html=True)
-        
-        # 显示AI回答
-        if message.get("answer"):
-            with st.chat_message("assistant"):
-                st.markdown(f'<div class="bot-bubble">{message.get("answer", "")}</div>', unsafe_allow_html=True)
-                
-                # 如果有知识库内容，显示展开/折叠选项
-                if message.get("knowledge"):
-                    with st.expander("📚 查看知识库引用"):
-                        if message["knowledge"] == "模型没有根据知识库做出的直接回答":
-                            st.info(message["knowledge"])
-                        else:
-                            st.markdown("### 📊 实体")
-                            from core.display import display_entities
-                            display_entities(message["knowledge"], float('inf'))  # 使用无限值显示所有实体
-                            st.markdown("### 🔄 关系")
-                            from core.display import display_relationships
-                            display_relationships(message["knowledge"], float('inf'))
-                            st.markdown("### 📄 文档")
-                            from core.display import display_sources
-                            display_sources(message["knowledge"], float('inf'))
-                        st.markdown(message.get("knowledge", ""))
+# 恢复init_session_state函数，因为app.py依赖它
 def init_session_state():
     """初始化会话状态"""
     if "show_settings" not in st.session_state:
@@ -98,6 +39,73 @@ def init_session_state():
     if "conversation" not in st.session_state:
         st.session_state.conversation = []
 
+def display_conversation():
+    """显示当前会话的对话历史"""
+    # 添加自定义CSS样式
+    st.markdown("""
+    <style>
+    /* 用户气泡样式 */
+    .user-bubble {
+        background-color: #e6f7ff;
+        border-radius: 15px;
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        color: black !important;
+    }
+    
+    /* 机器人气泡样式 */
+    .bot-bubble {
+        background-color: #f0f0f0;
+        border-radius: 15px;
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        color: black !important;
+    }
+    
+    /* 确保所有对话文本为黑色 */
+    .stChatMessage div[data-testid="stMarkdownContainer"] p {
+        color: black !important;
+    }
+    
+    /* 修复滚动条问题 */
+    .stApp {
+        padding-bottom: 6rem !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # 检查是否有对话历史
+    if 'conversation' not in st.session_state or not st.session_state.conversation:
+        st.toast("没有对话历史，请开始一个新的对话。", icon="ℹ️")
+        return
+    
+    # 遍历对话历史并显示
+    for message in st.session_state.conversation:
+        # 显示用户问题
+        with st.chat_message("user"):
+            st.markdown(f'<div class="user-bubble">{message.get("question", "")}</div>', unsafe_allow_html=True)
+        
+        # 显示AI回答
+        if message.get("answer"):
+            with st.chat_message("assistant"):
+                st.markdown(f'<div class="bot-bubble">{message.get("answer", "")}</div>', unsafe_allow_html=True)
+                
+                # 如果有知识库内容，显示展开/折叠选项
+                if message.get("knowledge"):
+                    with st.expander("📚 查看知识库引用"):
+                        if message["knowledge"] == "模型没有根据知识库做出的直接回答":
+                            st.info(message["knowledge"])
+                        else:
+                            st.markdown("### 📊 实体")
+                            display_entities(message["knowledge"], float('inf'))  # 使用无限值显示所有实体
+                            st.markdown("### 🔄 关系")
+                            display_relationships(message["knowledge"], float('inf'))
+                            st.markdown("### 📄 文档")
+                            display_sources(message["knowledge"], float('inf'))
+                        # 移除重复显示的原始知识库内容
+                        # st.markdown(message.get("knowledge", ""))
+# 移除重复的init_session_state函数，使用core.session中的initialize_session_state
+
 def reset_session_state():
     """重置会话状态"""
     keys_to_delete = [
@@ -110,6 +118,13 @@ def reset_session_state():
         if key in st.session_state:
             del st.session_state[key]
 
+def refresh_sidebar():
+    """刷新侧边栏会话列表"""
+    # 更新会话列表
+    st.session_state.sessions = load_session_history()
+    # 强制重新运行应用
+    st.rerun()
+
 # 添加create_sidebar函数
 def create_sidebar():
     """创建侧边栏"""
@@ -121,11 +136,16 @@ def create_sidebar():
             if not st.session_state.show_settings:
                 # 显示历史会话区域
                 st.markdown("### 历史会话")
+                
+                # 确保会话列表是最新的
+                st.session_state.sessions = load_session_history()
+                
                 # 新建会话按钮
                 if st.button("➕ 新建会话", key="new_session"):
-                    from core.query import create_new_session
-                    # 使用统一的创建新会话函数
-                    create_new_session()
+                    # 清空当前会话，创建全新空白状态
+                    st.session_state.conversation = []
+                    st.session_state.current_session_id = None
+                    st.session_state.current_session_name = None
                     st.rerun()
                 
                 # 显示历史会话列表
@@ -133,29 +153,21 @@ def create_sidebar():
                     col1, col2, col3 = st.columns([6, 1, 1])
                     with col1:
                         if st.button(session["display_name"], key=f"session_{idx}", use_container_width=True):
-                            # 保存当前会话
-                            if len(st.session_state.conversation) > 0:
-                                save_conversation(st.session_state.conversation)
-                            
-                            # 加载选中的会话
+                            # 加载选中的会话，完全替换当前会话
                             st.session_state.conversation = load_conversation(session["filename"])
+                            st.session_state.current_session_id = session["filename"]
                             st.session_state.current_session_name = session["filename"]
                             st.rerun()
                     
                     with col2:
                         # 删除按钮
+                        # 在删除按钮部分
                         if st.button("🗑️", key=f"delete_{idx}", help="删除此会话"):
                             # 修复：检查 current_session_name 是否存在
                             current_name = st.session_state.get("current_session_name")
                             if delete_conversation(session["filename"]):
                                 st.success("会话已删除")
-                                # 如果删除的是当前会话，清空当前会话
-                                if current_name and current_name == session["filename"]:
-                                    st.session_state.conversation = []
-                                    st.session_state.current_session_name = None
-                                
-                                # 刷新会话列表
-                                st.session_state.sessions = load_session_history()
+                                # 注意：删除当前会话的逻辑已经移到 delete_conversation 函数中
                                 st.rerun()
                     
                     with col3:
@@ -174,7 +186,7 @@ def create_sidebar():
                 
                 # 如果没有历史会话，显示提示
                 if not st.session_state.sessions:
-                    st.info("没有历史会话记录，开始新的对话吧！")
+                    st.toast("没有历史会话记录，开始新的对话吧！", icon="ℹ️")
                 
                 # 确保use_knowledge_base变量被正确设置
                 use_knowledge_base = st.session_state.use_knowledge_base
@@ -212,7 +224,7 @@ def create_sidebar():
                 
                 if st.button("💾 立即保存当前会话"):
                     save_before_exit()
-                    st.success("会话已保存！")
+                    st.toast("会话已保存！", icon="✅")
                     
                 if use_knowledge_base:
                     st.session_state.kb_params = create_knowledge_base_settings()
@@ -275,6 +287,7 @@ def create_query_section(use_knowledge_base=True):
         border-radius: 15px;
         padding: 10px 15px;
         margin-bottom: 10px;
+        color: black !important;
     }
     
     /* 机器人气泡样式 */
@@ -283,6 +296,12 @@ def create_query_section(use_knowledge_base=True):
         border-radius: 15px;
         padding: 10px 15px;
         margin-bottom: 10px;
+        color: black !important;
+    }
+    
+    /* 确保所有对话文本为黑色 */
+    .stChatMessage div[data-testid="stMarkdownContainer"] p {
+        color: black !important;
     }
     
     /* 新增底部容器样式 */
@@ -325,47 +344,48 @@ def create_query_section(use_knowledge_base=True):
         
         # 定义一个回调函数，用于处理查询提交
         def handle_submit():
+            """处理用户提交的查询"""
             if st.session_state.query_input:
-                # 获取当前输入值
                 current_query = st.session_state.query_input
+                use_knowledge_base = st.session_state.use_knowledge_base
                 
-                # 设置查询已提交标志
-                st.session_state.query_submitted = True
-                st.session_state.current_query = current_query
+                # 创建params参数字典
+                params = {
+                    "temperature": st.session_state.temperature,
+                    "custom_work_folder": "dickens1"  # 或其他适当的工作文件夹
+                }
                 
                 # 处理查询
-                from core.query import process_query
-                process_query(current_query, use_knowledge_base)
+                process_query(current_query, use_knowledge_base, params)
+                
+                # 清空输入框
+                st.session_state.query_input = ""
+                
+                # 强制刷新侧边栏
+                refresh_sidebar()
+                
+                # 标记查询已提交
+                st.session_state.query_submitted = True
+                
+                # 设置刷新侧边栏标志
+                st.session_state.refresh_sidebar_needed = True
                 
                 # 使用 Streamlit 的方式清空输入框 - 通过设置一个标记
                 st.session_state.clear_input = True
         
         with col_query:
-            # 检查是否需要清空输入框
-            if 'clear_input' in st.session_state and st.session_state.clear_input:
-                # 重置清空标记
-                st.session_state.clear_input = False
-                # 使用空字符串作为默认值
-                query = st.text_input(
-                    "Enter your query",
-                    key="query_input",
-                    label_visibility="collapsed",
-                    placeholder="请输入您的问题...",
-                    value="",
-                    on_change=handle_submit
-                )
-            else:
-                query = st.text_input(
-                    "Enter your query",
-                    key="query_input",
-                    label_visibility="collapsed",
-                    placeholder="请输入您的问题...",
-                    on_change=handle_submit
-                )
+            # 使用 key 确保输入框状态正确更新
+            query = st.text_input(
+                "Enter your query",
+                key="query_input",
+                label_visibility="collapsed",
+                placeholder="请输入您的问题...",
+                on_change=handle_submit
+            )
         
         with col_button:
             # 发送按钮 - 点击时触发相同的回调
-            if st.button("🚀", help="发送", use_container_width=True):
+            if st.button("🚀", help="发送", use_container_width=True, key="send_button"):
                 handle_submit()
         
         st.markdown('</div>', unsafe_allow_html=True)

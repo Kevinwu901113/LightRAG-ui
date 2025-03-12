@@ -2,23 +2,9 @@ import io
 import csv
 import pandas as pd
 import streamlit as st
-from typing import Optional, Dict, Any
+import re
 
-from utils.csv_utils import clean_markdown_csv, fix_csv_text, parse_csv_with_pipe_quotechar, format_sources_to_markdown
-
-def display_query_results(answer: str, context: Optional[str], params: Dict[str, Any]):
-    """显示查询结果"""
-    st.header("Generated Answer")
-    st.write(answer)
-
-    if context:
-        st.header("Source Context")
-        st.markdown("### 📊 实体")
-        display_entities(context, params['entity_count'])
-        st.markdown("### 🔄 关系")
-        display_relationships(context, params['relation_count'])
-        st.markdown("### 📄 文档")
-        display_sources(context, params['doc_count'])
+from utils.csv_utils import clean_markdown_csv, fix_csv_text, parse_csv_with_pipe_quotechar
 
 def display_entities(context: str, entity_count: float):
     """显示实体信息"""

@@ -1,6 +1,8 @@
 import json
 import asyncio
 import os
+import random  # 添加缺失的导入
+import string  # 添加缺失的导入
 import streamlit as st
 from typing import Dict, Any
 from datetime import datetime
@@ -10,7 +12,9 @@ from query import insert1, query1, prompt_1, prompt_2, prompt_3, direct_query
 from utils.csv_utils import clean_markdown_csv, fix_csv_text
 from utils.file_utils import reset_corrupted_kb_files
 from core.display import display_entities, display_relationships, display_sources
-from core.session import save_conversation, load_conversation, load_session_history, CURRENT_SESSION, generate_session_id
+from core.session import save_conversation, load_conversation, load_session_history, generate_session_id
+
+# 移除对CURRENT_SESSION的引用
 
 def ensure_active_session():
     """确保有一个活跃的会话，如果没有则创建一个新会话"""
@@ -32,22 +36,20 @@ def ensure_active_session():
             st.session_state.conversation = []
             # 更新会话列表
             st.session_state.sessions = load_session_history()
+
 def create_new_session():
-    """创建一个全新的会话"""
-    # 保存当前会话
-    if 'conversation' in st.session_state and len(st.session_state.conversation) > 0:
-        save_conversation(st.session_state.conversation)
-    
-    # 创建新会话
-    new_session_id = generate_session_id()
-    st.session_state.current_session_id = new_session_id
-    # 同时设置 current_session_name
-    st.session_state.current_session_name = new_session_id
+    """创建一个全新的空白会话"""
+    # 清空当前会话
     st.session_state.conversation = []
     
-    # 更新会话列表
-    st.session_state.sessions = load_session_history()
-    return new_session_id
+    # 生成新的会话ID
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    random_suffix = ''.join(random.choices(string.hexdigits.lower(), k=8))
+    st.session_state.current_session_id = f"session_{timestamp}_{random_suffix}"
+    st.session_state.current_session_name = None
+    
+    # 不立即保存，等到有内容时再保存
+    return st.session_state.current_session_id
 def process_kb_query(query: str, model_index: int, params: Dict[str, Any]):
     """处理基于知识库的查询"""
     try:
@@ -118,96 +120,85 @@ def process_direct_query(query: str, model_index: int, temperature: float = 0.8)
         # 获取模型名称
         model_name = st.session_state.llm_model
         
-        # 调用直接查询函数
-        result = asyncio.run(direct_query(query, model_name, temperature))
-        return result, ""
+        # 修改异步调用方式，确保在新的事件循环中运行
+        try:
+            # 尝试获取当前事件循环
+            loop = asyncio.get_event_loop()
+        except RuntimeError:
+            # 如果没有事件循环，创建一个新的
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+        
+        # 在事件循环中运行异步函数
+        result = loop.run_until_complete(direct_query(query, model_name, temperature))
+        return result
     except Exception as e:
         import traceback
         error_msg = f"直接查询失败: {str(e)}\n{traceback.format_exc()}"
         print(error_msg)
-        return f"直接查询失败: {str(e)}", ""
+        return f"直接查询失败: {str(e)}"
 
+def process_query(query: str, use_kb: bool, params: Dict[str, Any]):
+    """处理查询请求"""
+    model_index = 0 if st.session_state.llm_model == 'deepseek-chat' else 1
+
+    # 如果当前没有会话ID，创建一个新的会话ID
+    if not st.session_state.current_session_id:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        random_suffix = ''.join(random.choices(string.hexdigits.lower(), k=8))
+        st.session_state.current_session_id = f"session_{timestamp}_{random_suffix}"
+    
+    if use_kb:
+        try:
+            answer, context = process_kb_query(query, model_index, params)
+            
+            # 显示结果
+            st.header("生成的回答")
+            st.write(answer)
+            
+            # 保存到会话历史
+            st.session_state.conversation.append({
+                "question": query,
+                "answer": answer,
+                "knowledge": context,
+                "timestamp": datetime.now().isoformat()
+            })
+            
+        except json.JSONDecodeError as e:
+            st.error(f"知识库文件损坏！请尝试重新上传文件创建知识库。错误详情：{str(e)}")
+        except Exception as e:
+            st.error(f"查询过程中发生错误：{str(e)}")
+    else:
+        # 直接查询模式
+        answer = process_direct_query(query, model_index, st.session_state.temperature)
+        
+        # 保存到会话历史
+        st.session_state.conversation.append({
+            "question": query,
+            "answer": answer,
+            "knowledge": "模型没有根据知识库做出的直接回答",
+            "timestamp": datetime.now().isoformat()
+        })
+    
+    # 每次查询后保存会话
+    if st.session_state.current_session_id:
+        save_conversation(st.session_state.conversation, st.session_state.current_session_id)
+    else:
+        new_session_id = generate_session_id()
+        st.session_state.current_session_id = new_session_id
+        save_conversation(st.session_state.conversation, new_session_id)
+    
+    # 更新会话列表并设置刷新标志
+    st.session_state.sessions = load_session_history()
+    st.session_state.refresh_sidebar_needed = True
+    
+    return True
 def handle_kb_error(error: json.JSONDecodeError, work_folder: str):
     """处理知识库错误"""
-    st.error("知识库文件损坏！请尝试重新上传文件创建知识库。")
-    st.error(f"错误详情：{str(error)}")
+    st.toast("知识库文件损坏！请尝试重新上传文件创建知识库。", icon="⚠️")
+    st.toast(f"错误详情：{str(error)}", icon="⚠️")
     try:
         reset_corrupted_kb_files(work_folder)
-        st.info("已重置损坏的知识库文件。请重新上传文件创建知识库。")
+        st.toast("已重置损坏的知识库文件。请重新上传文件创建知识库。", icon="ℹ️")
     except Exception as e:
-        st.error(f"重置知识库文件失败: {str(e)}")
-
-def process_query(query, use_knowledge_base=True):
-    """处理用户查询"""
-    try:
-        # 确保有活跃的会话
-        ensure_active_session()
-        
-        # 添加用户问题到会话
-        timestamp = datetime.now().isoformat()
-        user_message = {
-            "question": query,
-            "answer": "",
-            "knowledge": "",
-            "timestamp": timestamp
-        }
-        
-        # 将用户问题添加到会话
-        st.session_state.conversation.append(user_message)
-        
-        # 显示处理中的消息
-        with st.spinner("正在处理您的问题..."):
-            # 确定模型索引和参数
-            model_index = 0 if st.session_state.llm_model == 'deepseek-chat' else 1
-            temperature = st.session_state.temperature
-            
-            # 准备查询参数 - 修改这里，使用用户设置的知识库路径
-            params = {
-                'temperature': temperature
-            }
-            
-            # 如果存在用户设置的知识库路径，使用它
-            if 'kb_params' in st.session_state and 'custom_work_folder' in st.session_state.kb_params:
-                params['custom_work_folder'] = st.session_state.kb_params['custom_work_folder']
-            else:
-                # 默认使用 dickens1 目录
-                params['custom_work_folder'] = './dickens1'
-                
-            # 打印当前使用的知识库路径，便于调试
-            print(f"使用知识库路径: {params.get('custom_work_folder', './temp')}")
-            
-            # 根据是否使用知识库选择不同的处理方式
-            if use_knowledge_base:
-                print(f"使用知识库处理查询: {query}")
-                answer, knowledge = process_kb_query(query, model_index, params)
-            else:
-                print(f"直接使用模型处理查询: {query}")
-                answer, knowledge = process_direct_query(query, model_index, temperature)
-            
-            # 更新会话中的回答
-            st.session_state.conversation[-1]["answer"] = answer
-            st.session_state.conversation[-1]["knowledge"] = knowledge
-            
-            # 保存会话
-            if st.session_state.current_session_id:
-                save_conversation(st.session_state.conversation, st.session_state.current_session_id)
-            else:
-                new_session_id = generate_session_id()
-                st.session_state.current_session_id = new_session_id
-                save_conversation(st.session_state.conversation, new_session_id)
-                st.session_state.sessions = load_session_history()
-            
-            # 同时保存到当前会话文件
-            try:
-                with open(CURRENT_SESSION, "w", encoding="utf-8") as f:
-                    json.dump(st.session_state.conversation, f, ensure_ascii=False, indent=2)
-            except Exception as e:
-                print(f"保存当前会话失败: {str(e)}")
-        
-        return True
-    except Exception as e:
-        import traceback
-        print(f"处理查询时出错: {str(e)}")
-        print(traceback.format_exc())
-        st.error(f"处理查询时出错: {str(e)}")
-        return False
+        st.toast(f"重置知识库文件失败: {str(e)}", icon="⚠️")
