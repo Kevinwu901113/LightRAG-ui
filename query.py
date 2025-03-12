@@ -249,7 +249,7 @@ def insert1(working_dir=WORKING_DIR,text_content=[],model_name='deepseek-chat',i
         rag3.insert([t.decode('utf-8') for t in text_content])
 
 
-async def direct_query(query: str, model_name: str, temperature:float) -> str:
+async def direct_query(query: str, model_name: str, temperature:float,system_p='') -> str:
     """直接调用ollama进行查询，不使用知识库"""
     try:
         if model_name=="deepseek-chat":
@@ -269,7 +269,7 @@ async def direct_query(query: str, model_name: str, temperature:float) -> str:
                     }
                     payload = {
                         "model": "deepseek-chat",
-                        "messages": [{"role": "user", "content": query}],
+                        "messages": [{"role": "system", "content": system_p},{"role": "user", "content": query}],
                         "temperature": temperature
                     }
                     
@@ -305,6 +305,7 @@ async def direct_query(query: str, model_name: str, temperature:float) -> str:
                     response = await ollama_model_if_cache(
                         model="qwen2.5",  # 使用默认备用模型
                         prompt=query,
+                        system_prompt=system_p,
                         temperature=temperature,
                         host="http://localhost:11434",
                         timeout=30
@@ -316,6 +317,7 @@ async def direct_query(query: str, model_name: str, temperature:float) -> str:
             response = await ollama_model_if_cache(
                 model=model_name,
                 prompt=query,
+                system_prompt=system_p,
                 temperature=temperature,
                 host="http://localhost:11434",
                 timeout=30

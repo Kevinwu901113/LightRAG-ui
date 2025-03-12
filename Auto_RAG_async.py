@@ -3,10 +3,9 @@ import re
 import os
 import logging
 from lightrag import LightRAG, QueryParam
-from lightrag.llm import hf_embedding, hf_model_complete, siliconcloud_llm_response
+from lightrag.llm import hf_embedding, hf_model_complete
 from lightrag.utils import EmbeddingFunc
 import json
-from query import direct_query
 from transformers import AutoTokenizer, AutoModel, AutoModelForCausalLM, GenerationConfig
 
 # 本地模型路径
@@ -120,7 +119,7 @@ async def async_generate_reasoning(query, rag_response,model_name='deepseek-chat
     #     对话历史：{history}
     #
     #     """
-
+    from query import direct_query
     reasoning_template_system = """
     作为问题解决架构师，你负责通过系统性知识检索规划实现以下核心目标：
 

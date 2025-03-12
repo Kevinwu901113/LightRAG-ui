@@ -50,11 +50,13 @@ def create_new_session():
     
     # 不立即保存，等到有内容时再保存
     return st.session_state.current_session_id
-def process_kb_query(query: str, model_index: int, params: Dict[str, Any],use_autoRAG_base=True):
+def process_kb_query(query: str, model_index: int, params: Dict[str, Any], use_autoRAG_base=True):
     """处理基于知识库的查询"""
     try:
-        # 获取工作目录和模型名称
-        work_folder = params.get('custom_work_folder', params.get('work_folder', './temp'))
+        # 获取工作目录和模型名称，添加默认值处理
+        if not params:
+            params = {'custom_work_folder': 'dickens1', 'use_autorag_base': False}
+        work_folder = params.get('custom_work_folder', params.get('work_folder', './dickens1'))
         
         # 检查工作目录是否存在
         if not os.path.exists(work_folder):

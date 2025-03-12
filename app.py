@@ -5,9 +5,9 @@ import time
 from pathlib import Path
 
 # 导入自定义模块
-from core.session import load_session_history
+from core.session import load_session_history, initialize_session_state
 from core.query import process_query
-from ui.layout import init_session_state, create_sidebar, create_query_section
+from ui.layout import create_sidebar, create_query_section
 from utils.model_utils import get_model_names
 # 导入显示函数
 from core.display import display_entities, display_relationships, display_sources
@@ -16,13 +16,13 @@ from core.display import display_entities, display_relationships, display_source
 SESSION_DIR = Path("./temp/chat")  # 会话保存路径
 SESSION_DIR.mkdir(exist_ok=True, parents=True)
 
-# 在主函数开始处添加
-from core.session import initialize_session_state
-
 def main():
     """主程序入口"""
     st.set_page_config(page_title="LightRAG", page_icon="🔍")
     st.title("LightRAG Query Interface")
+    
+    # 确保在任何其他操作前初始化会话状态
+    initialize_session_state()
     
     # 添加自定义CSS样式，确保对话框文字为黑色
     st.markdown("""
@@ -57,9 +57,6 @@ def main():
     </style>
     """, unsafe_allow_html=True)
     
-    # 初始化会话状态
-    initialize_session_state()
-    
     try:
         # 加载当前会话
         if "conversation" not in st.session_state:
@@ -77,13 +74,13 @@ def main():
                 st.warning(f"获取模型列表时出错: {str(e)}")
         
         # 创建侧边栏并获取是否使用知识库
-        use_knowledge_base,use_autorag_base = create_sidebar()
+        use_knowledge_base, use_autorag_base = create_sidebar()
         
         # 显示历史对话
         display_conversation()
         
         # 创建主查询区
-        create_query_section(use_knowledge_base,use_autorag_base)
+        create_query_section(use_knowledge_base, use_autorag_base)
     except Exception as e:
         st.error(f"应用程序运行时出错: {str(e)}")
 

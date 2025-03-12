@@ -190,6 +190,10 @@ def create_sidebar():
                 
                 # 确保use_knowledge_base变量被正确设置
                 use_knowledge_base = st.session_state.use_knowledge_base
+                
+                # 确保kb_params存在
+                if 'kb_params' not in st.session_state:
+                    st.session_state.kb_params = {'custom_work_folder': 'dickens1', 'use_autorag_base': False}
             else:
                 # 显示设置面板
                 use_knowledge_base = st.toggle("启用知识库", value=True)
@@ -344,7 +348,7 @@ def create_query_section(use_knowledge_base=True,use_autoRAG_base=True):
         st.markdown('<div class="query-input">', unsafe_allow_html=True)
         col_query, col_button = st.columns([8, 1])
         
-        # 定义一个回调函数，用于处理查询提交
+        # 修改：定义一个回调函数，用于处理查询提交
         def handle_submit():
             """处理用户提交的查询"""
             if st.session_state.query_input:
@@ -360,8 +364,8 @@ def create_query_section(use_knowledge_base=True,use_autoRAG_base=True):
                 # 处理查询
                 process_query(current_query, use_knowledge_base, params)
                 
-                # 清空输入框
-                st.session_state.query_input = ""
+                # 设置一个标记，表示需要清空输入框
+                st.session_state.clear_input = True
                 
                 # 强制刷新侧边栏
                 refresh_sidebar()
@@ -371,17 +375,24 @@ def create_query_section(use_knowledge_base=True,use_autoRAG_base=True):
                 
                 # 设置刷新侧边栏标志
                 st.session_state.refresh_sidebar_needed = True
-                
-                # 使用 Streamlit 的方式清空输入框 - 通过设置一个标记
-                st.session_state.clear_input = True
         
         with col_query:
-            # 使用 key 确保输入框状态正确更新
+            # 修改：检查是否需要清空输入框
+            if st.session_state.get('clear_input', False):
+                # 清除标记
+                st.session_state.clear_input = False
+                # 使用空字符串作为默认值
+                default_value = ""
+            else:
+                default_value = st.session_state.get('query_input', "")
+                
+            # 使用 key 确保输入框状态正确更新，并设置默认值
             query = st.text_input(
                 "Enter your query",
                 key="query_input",
                 label_visibility="collapsed",
                 placeholder="请输入您的问题...",
+                value=default_value,  # 使用动态默认值
                 on_change=handle_submit
             )
         

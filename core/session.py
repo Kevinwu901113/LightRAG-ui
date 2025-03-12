@@ -24,14 +24,16 @@ def initialize_session_state():
         'current_session_id': None,
         'current_session_name': None,
         'sessions': load_session_history(),
-        'show_settings': False,  # 确保初始化 show_settings
+        'show_settings': False,
         'use_knowledge_base': True,
+        'use_autorag_base': False,  # 添加AutoRAG开关默认值
         'temperature': 0.7,
         'llm_model': 'qwen2.5:latest',
         'query_submitted': False,
+        'kb_params': {'custom_work_folder': 'dickens1', 'use_autorag_base': False},  # 确保kb_params有默认值
     }
     
-    # 统一初始化所有变量
+    # 为每个默认值设置session state
     for key, value in default_values.items():
         if key not in st.session_state:
             st.session_state[key] = value
@@ -96,8 +98,10 @@ def delete_conversation(filename):
             return True
         return False
     except Exception as e:
-        st.toast(f"删除会话失败: {str(e)}", icon="⚠️")
+        st.toast(f"删除会话失败: {str(e)}", icon="⚠")
         return False
+
+
 
 def load_conversation(filename):
     """加载指定的会话文件"""

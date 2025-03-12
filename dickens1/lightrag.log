@@ -10448,3 +10448,319 @@
 2025-03-11 22:08:53,417 - lightrag - INFO - Creating a new event loop in main thread.
 2025-03-11 22:08:55,730 - lightrag - INFO - Global query uses 11 entites, 60 relations, 0 text units
 2025-03-11 22:08:55,891 - lightrag - INFO - Global query uses 11 entites, 60 relations, 0 text units
+2025-03-12 14:17:49,203 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:17:49,211 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:17:49,213 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:17:49,214 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:17:49,305 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:17:49,405 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:17:49,413 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:17:49,414 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:17:49,415 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:17:49,553 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:21:19,246 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:21:19,264 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:21:19,266 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:21:19,269 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:21:19,412 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:21:19,597 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:21:19,609 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:21:19,612 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:21:19,615 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:21:19,807 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:22:42,910 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:22:42,919 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:22:42,922 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:22:42,925 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:22:43,001 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:22:43,104 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:22:43,112 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:22:43,113 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:22:43,114 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:22:43,259 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:23:59,526 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:23:59,538 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:23:59,541 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:23:59,543 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:23:59,682 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:23:59,871 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:23:59,882 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:23:59,884 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:23:59,886 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:24:00,075 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:25:02,856 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:25:02,867 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:25:02,870 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:25:02,872 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:25:02,954 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:25:03,051 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:25:03,058 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:25:03,060 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:25:03,062 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:25:03,207 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:26:51,879 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:26:51,897 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:26:51,902 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:26:51,907 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:26:52,130 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:26:52,281 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:26:52,288 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:26:52,290 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:26:52,292 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:26:52,436 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:28:23,756 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:28:23,765 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:28:23,767 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:28:23,768 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:28:23,840 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:28:23,938 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:28:23,945 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:28:23,947 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:28:23,948 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:28:24,089 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:31:33,116 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:31:33,129 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:31:33,132 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:31:33,135 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:31:33,267 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:31:33,403 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:31:33,410 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:31:33,412 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:31:33,413 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:31:33,555 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:33:40,674 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:33:40,682 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:33:40,685 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:33:40,687 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:33:40,769 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:33:40,865 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:33:40,873 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:33:40,875 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:33:40,876 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:33:41,103 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:37:40,182 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:37:40,191 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:37:40,192 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:37:40,194 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:37:40,330 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:37:40,426 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:37:40,433 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:37:40,435 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:37:40,436 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:37:40,504 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:40:33,266 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:40:33,273 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:40:33,274 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:40:33,276 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:40:33,416 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:40:33,508 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:40:33,516 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:40:33,517 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:40:33,518 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:40:33,585 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:42:05,680 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:42:05,688 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:42:05,690 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:42:05,691 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:42:05,839 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:42:05,932 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:42:05,939 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:42:05,941 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:42:05,942 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:42:06,010 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:42:48,694 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:42:48,703 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:42:48,704 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:42:48,706 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:42:48,841 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:42:48,960 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:42:48,967 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:42:48,969 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:42:48,970 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:42:49,038 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:45:47,056 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:45:47,064 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:45:47,065 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:45:47,067 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:45:47,206 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:45:47,300 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:45:47,307 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:45:47,309 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:45:47,310 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:45:47,378 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:48:02,705 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:48:02,713 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:48:02,715 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:48:02,716 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:48:02,869 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 14:48:02,967 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 14:48:02,975 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 14:48:02,977 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 14:48:02,978 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 14:48:03,044 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:10:22,645 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:10:22,656 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:10:22,660 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:10:22,665 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:10:22,818 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:10:22,939 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:10:22,945 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:10:22,947 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:10:22,948 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:10:23,014 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:12:20,009 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:12:20,017 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:12:20,020 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:12:20,021 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:12:20,103 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:12:20,199 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:12:20,206 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:12:20,208 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:12:20,209 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:12:20,355 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:20:05,877 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:20:05,885 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:20:05,886 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:20:05,888 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:20:06,023 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:20:06,115 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:20:06,123 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:20:06,124 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:20:06,126 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:20:06,192 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:25:12,186 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:25:12,193 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:25:12,195 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:25:12,197 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:25:12,274 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:25:12,366 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:25:12,373 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:25:12,375 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:25:12,376 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:25:12,507 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:25:16,626 - lightrag - INFO - Logger initialized for working directory: dickens1
+2025-03-12 15:25:16,634 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:25:16,635 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:25:16,636 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:25:16,715 - lightrag - INFO - Loaded graph from dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:25:16,761 - lightrag - INFO - Logger initialized for working directory: dickens1
+2025-03-12 15:25:16,788 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:25:16,816 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:25:16,818 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:25:16,823 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-12 15:25:16,974 - lightrag - INFO - Loaded graph from dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:25:17,071 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-12 15:25:22,962 - lightrag - INFO - Local query uses 120 entites, 243 relations, 0 text units
+2025-03-12 15:25:22,962 - lightrag - INFO - Local query uses 120 entites, 243 relations, 0 text units
+2025-03-12 15:25:25,216 - lightrag - INFO - Global query uses 4 entites, 60 relations, 2 text units
+2025-03-12 15:25:25,226 - lightrag - INFO - Global query uses 4 entites, 60 relations, 2 text units
+2025-03-12 15:27:37,214 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:27:37,227 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:27:37,228 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:27:37,230 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:27:37,300 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:27:37,395 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:27:37,402 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:27:37,402 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:27:37,404 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:27:37,552 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:27:49,008 - lightrag - INFO - Logger initialized for working directory: dickens1
+2025-03-12 15:27:49,016 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:27:49,017 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:27:49,018 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:27:49,098 - lightrag - INFO - Loaded graph from dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:27:49,196 - lightrag - INFO - Logger initialized for working directory: dickens1
+2025-03-12 15:27:49,203 - lightrag - INFO - Load KV llm_response_cache with 1213 data
+2025-03-12 15:27:49,205 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:27:49,207 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:27:49,207 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-12 15:27:49,347 - lightrag - INFO - Loaded graph from dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:27:49,451 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-12 15:28:00,762 - lightrag - INFO - Local query uses 300 entites, 279 relations, 0 text units
+2025-03-12 15:28:00,917 - lightrag - INFO - Local query uses 300 entites, 279 relations, 0 text units
+2025-03-12 15:28:05,208 - lightrag - INFO - Global query uses 1 entites, 120 relations, 1 text units
+2025-03-12 15:28:05,348 - lightrag - INFO - Global query uses 1 entites, 120 relations, 1 text units
+2025-03-12 15:32:19,108 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:32:19,120 - lightrag - INFO - Load KV llm_response_cache with 1214 data
+2025-03-12 15:32:19,122 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:32:19,123 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:32:19,198 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:32:19,293 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:32:19,300 - lightrag - INFO - Load KV llm_response_cache with 1214 data
+2025-03-12 15:32:19,302 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:32:19,303 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:32:19,440 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:32:22,655 - lightrag - INFO - Logger initialized for working directory: dickens1
+2025-03-12 15:32:22,663 - lightrag - INFO - Load KV llm_response_cache with 1214 data
+2025-03-12 15:32:22,665 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:32:22,666 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:32:22,742 - lightrag - INFO - Loaded graph from dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:32:22,845 - lightrag - INFO - Logger initialized for working directory: dickens1
+2025-03-12 15:32:22,851 - lightrag - INFO - Load KV llm_response_cache with 1214 data
+2025-03-12 15:32:22,854 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:32:22,856 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-12 15:32:22,856 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:32:22,992 - lightrag - INFO - Loaded graph from dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:32:23,086 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-12 15:32:25,338 - lightrag - INFO - Global query uses 11 entites, 60 relations, 0 text units
+2025-03-12 15:32:25,508 - lightrag - INFO - Global query uses 11 entites, 60 relations, 0 text units
+2025-03-12 15:32:35,046 - lightrag - INFO - Logger initialized for working directory: dickens1
+2025-03-12 15:32:35,058 - lightrag - INFO - Load KV llm_response_cache with 1214 data
+2025-03-12 15:32:35,059 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:32:35,061 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:32:35,132 - lightrag - INFO - Loaded graph from dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:32:35,223 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-12 15:32:37,635 - lightrag - INFO - Global query uses 11 entites, 60 relations, 0 text units
+2025-03-12 15:32:39,525 - lightrag - INFO - Logger initialized for working directory: dickens1
+2025-03-12 15:32:39,537 - lightrag - INFO - Load KV llm_response_cache with 1214 data
+2025-03-12 15:32:39,538 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:32:39,541 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:32:39,612 - lightrag - INFO - Loaded graph from dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:32:39,706 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-12 15:32:42,128 - lightrag - INFO - Global query uses 11 entites, 60 relations, 0 text units
+2025-03-12 15:33:02,195 - lightrag - INFO - Logger initialized for working directory: dickens1
+2025-03-12 15:33:02,207 - lightrag - INFO - Load KV llm_response_cache with 1214 data
+2025-03-12 15:33:02,208 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:33:02,209 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:33:02,286 - lightrag - INFO - Loaded graph from dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:33:02,378 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-12 15:33:04,816 - lightrag - INFO - Global query uses 11 entites, 60 relations, 0 text units
+2025-03-12 15:33:09,020 - lightrag - INFO - Logger initialized for working directory: dickens1
+2025-03-12 15:33:09,031 - lightrag - INFO - Load KV llm_response_cache with 1214 data
+2025-03-12 15:33:09,032 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:33:09,034 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:33:09,108 - lightrag - INFO - Loaded graph from dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:33:09,204 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-12 15:33:11,653 - lightrag - INFO - Global query uses 11 entites, 60 relations, 0 text units
+2025-03-12 15:37:05,062 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:37:05,076 - lightrag - INFO - Load KV llm_response_cache with 1214 data
+2025-03-12 15:37:05,078 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:37:05,080 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:37:05,159 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:37:05,254 - lightrag - INFO - Logger initialized for working directory: ./dickens1
+2025-03-12 15:37:05,262 - lightrag - INFO - Load KV llm_response_cache with 1214 data
+2025-03-12 15:37:05,263 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:37:05,265 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:37:05,420 - lightrag - INFO - Loaded graph from ./dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:37:28,510 - lightrag - INFO - Logger initialized for working directory: dickens1
+2025-03-12 15:37:28,520 - lightrag - INFO - Load KV llm_response_cache with 1214 data
+2025-03-12 15:37:28,521 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:37:28,524 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:37:28,603 - lightrag - INFO - Loaded graph from dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:37:28,765 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-12 15:37:33,514 - lightrag - INFO - Local query uses 120 entites, 243 relations, 0 text units
+2025-03-12 15:37:35,747 - lightrag - INFO - Global query uses 4 entites, 60 relations, 2 text units
+2025-03-12 15:38:28,580 - lightrag - INFO - Logger initialized for working directory: dickens1
+2025-03-12 15:38:28,592 - lightrag - INFO - Load KV llm_response_cache with 1214 data
+2025-03-12 15:38:28,593 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:38:28,595 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:38:28,671 - lightrag - INFO - Loaded graph from dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:38:28,721 - lightrag - INFO - Logger initialized for working directory: dickens1
+2025-03-12 15:38:28,747 - lightrag - INFO - Load KV llm_response_cache with 1214 data
+2025-03-12 15:38:28,775 - lightrag - INFO - Load KV full_docs with 38 data
+2025-03-12 15:38:28,777 - lightrag - INFO - Load KV text_chunks with 66 data
+2025-03-12 15:38:28,867 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-12 15:38:28,932 - lightrag - INFO - Loaded graph from dickens1\graph_chunk_entity_relation.graphml with 3753 nodes, 4189 edges
+2025-03-12 15:38:29,047 - lightrag - INFO - Creating a new event loop in main thread.
+2025-03-12 15:38:33,546 - lightrag - INFO - Global query uses 11 entites, 120 relations, 0 text units
+2025-03-12 15:38:33,731 - lightrag - INFO - Global query uses 11 entites, 120 relations, 0 text units
