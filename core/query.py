@@ -7,7 +7,7 @@ import streamlit as st
 from typing import Dict, Any
 from datetime import datetime
 from lightrag import QueryParam
-from query import insert1, query1, prompt_1, prompt_2, prompt_3, direct_query
+from query import insert1, query1, prompt_1, prompt_2, prompt_3,auto_rag,direct_query
 
 from utils.csv_utils import clean_markdown_csv, fix_csv_text
 from utils.file_utils import reset_corrupted_kb_files
@@ -99,7 +99,10 @@ def process_kb_query(query: str, model_index: int, params: Dict[str, Any]):
                 # 清理CSV格式的知识
                 knowledge = clean_markdown_csv(knowledge)
                 knowledge = fix_csv_text(knowledge)
-            
+            if use_autoRAG_base:
+                success,ans_his=auto_rag(query,answer,knowledge,5,model_name,temperature)
+                answer=ans_his["answer"]
+                history=ans_his["history"]
             return answer, knowledge
         else:
             # 如果结果不是字典，直接返回
