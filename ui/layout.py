@@ -74,10 +74,7 @@ def display_conversation():
     </style>
     """, unsafe_allow_html=True)
     
-    # 检查是否有对话历史
-    if 'conversation' not in st.session_state or not st.session_state.conversation:
-        st.toast("没有对话历史，请开始一个新的对话。", icon="ℹ️")
-        return
+
     
     # 遍历对话历史并显示
     for message in st.session_state.conversation:
@@ -366,10 +363,7 @@ def create_query_section(use_knowledge_base=True,use_autoRAG_base=True):
                 
                 # 设置一个标记，表示需要清空输入框
                 st.session_state.clear_input = True
-                
-                # 强制刷新侧边栏
-                refresh_sidebar()
-                
+
                 # 标记查询已提交
                 st.session_state.query_submitted = True
                 
