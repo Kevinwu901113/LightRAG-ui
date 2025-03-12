@@ -1,0 +1,112 @@
+/* 全局样式 */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #e0e0e0;
+    background-color: #1a1a1a;
+    padding-right: 16px;
+}
+
+/* 标题样式 */
+h1, h2, h3 {
+    color: #ffffff;
+}
+
+.stMain {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+/* 普通按钮样式 */
+.stButton button {
+    background-color: transparent;
+    color: #e0e0e0;
+    border: 1px solid #555555;
+    border-radius: 4px;
+    padding: 8px 16px;
+}
+
+/* 查询发送按钮样式 */
+.query-input .stButton button {
+    background-color: #333333;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 6px;
+    min-width: 40px;
+    width: auto;
+}
+
+/* 查询输入框样式 */
+.query-input .stTextInput {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+/* 查询区域布局 */
+.query-input {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 知识库结果容器 */
+.knowledge-container {
+    background-color: #2a2a2a;
+    border: 1px solid #444444;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* 会话历史样式 */
+.chat-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.user-message {
+    background-color: #2c3e50;
+    text-align: right;
+}
+
+.bot-message {
+    background-color: #333333;
+}
+
+/* 添加Streamlit组件的深色主题样式 */
+.stTextInput input, .stTextArea textarea {
+    background-color: #33333300;
+    color: #e0e0e0;
+    border: 1px solid #55555500;
+}
+
+.stSelectbox select {
+    background-color: #333333;
+    color: #e0e0e0;
+}
+
+/* 侧边栏样式 */
+.css-1d391kg, .css-1lcbmhc {
+    background-color: #252525;
+}
+
+/* 卡片和容器样式 */
+.stExpander, .css-12w0qpk {
+    background-color: #2a2a2a00;
+    border: 1px solid #44444400;
+}
+
+/* 链接样式 */
+a {
+    color: #4da6ff;
+}
+
+/* 滑块样式 */
+.stSlider div[data-baseweb="slider"] {
+    background-color: #44444400;
+}
+
+/* 切换按钮样式 */
+.stCheckbox label span {
+    color: #e0e0e0;
+}

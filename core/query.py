@@ -90,25 +90,35 @@ def process_kb_query(query: str, model_index: int, params: Dict[str, Any], use_a
             use_kb=True,
             temperature=temperature
         )
-        
-        # 解析结果
-        if isinstance(result, dict):
-            answer = result.get('answer', '')
-            knowledge = result.get('knowledge', '')
+        query_param = QueryParam(mode="hybrid", only_need_context=True)
+        knowledge = query1(
+            working_dir=work_folder,
+            query=query,
+            model_name=model_name,
+            i=model_index,
+            param=query_param,
+            use_kb=True,
+            temperature=temperature
+        )
+        return result, knowledge
+        # # 解析结果
+        # if isinstance(result, dict):
+        #     answer = result.get('answer', '')
+        #     knowledge = result.get('knowledge', '')
             
-            # 处理知识库内容
-            if knowledge:
-                # 清理CSV格式的知识
-                knowledge = clean_markdown_csv(knowledge)
-                knowledge = fix_csv_text(knowledge)
-            if use_autoRAG_base:
-                success,ans_his=autorag(query,answer,knowledge,5,model_name,temperature)
-                answer=ans_his["answer"]
-                history=ans_his["history"]
-            return answer, knowledge
-        else:
-            # 如果结果不是字典，直接返回
-            return result, ""
+        #     # 处理知识库内容
+        #     if knowledge:
+        #         # 清理CSV格式的知识
+        #         knowledge = clean_markdown_csv(knowledge)
+        #         knowledge = fix_csv_text(knowledge)
+        #     if use_autoRAG_base:
+        #         success,ans_his=autorag(query,answer,knowledge,5,model_name,temperature)
+        #         answer=ans_his["answer"]
+        #         history=ans_his["history"]
+        #     return answer, knowledge
+        # else:
+        #     # 如果结果不是字典，直接返回
+        #     return result, ""
             
     except json.JSONDecodeError as e:
         handle_kb_error(e, work_folder)
@@ -155,7 +165,7 @@ def process_query(query: str, use_kb: bool, params: Dict[str, Any]):
     
     if use_kb:
         try:
-            answer, context = process_kb_query(query, model_index, params)
+            answer, context, = process_kb_query(query, model_index, params)
             
             # 显示结果
             st.header("生成的回答")

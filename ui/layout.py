@@ -166,20 +166,7 @@ def create_sidebar():
                                 st.success("会话已删除")
                                 # 注意：删除当前会话的逻辑已经移到 delete_conversation 函数中
                                 st.rerun()
-                    
-                    with col3:
-                        # 导出按钮
-                        if st.button("💾", key=f"export_{idx}", help="导出此会话"):
-                            conversation = load_conversation(session["filename"])
-                            # 创建导出文件
-                            export_data = json.dumps(conversation, ensure_ascii=False, indent=2)
-                            st.download_button(
-                                label="下载",
-                                data=export_data,
-                                file_name=f"export_{session['filename']}",
-                                mime="application/json",
-                                key=f"download_{idx}"
-                            )
+
                 
                 # 如果没有历史会话，显示提示
                 if not st.session_state.sessions:
@@ -282,56 +269,6 @@ def create_knowledge_base_settings() -> Dict[str, Any]:
 def create_query_section(use_knowledge_base=True,use_autoRAG_base=True):
     """创建查询区域"""
     # 添加底部固定输入框样式
-    st.markdown("""
-    <style>
-    /* 用户气泡样式 */
-    .user-bubble {
-        background-color: #e6f7ff;
-        border-radius: 15px;
-        padding: 10px 15px;
-        margin-bottom: 10px;
-        color: black !important;
-    }
-    
-    /* 机器人气泡样式 */
-    .bot-bubble {
-        background-color: #f0f0f0;
-        border-radius: 15px;
-        padding: 10px 15px;
-        margin-bottom: 10px;
-        color: black !important;
-    }
-    
-    /* 确保所有对话文本为黑色 */
-    .stChatMessage div[data-testid="stMarkdownContainer"] p {
-        color: black !important;
-    }
-    
-    /* 新增底部容器样式 */
-    .fixed-bottom {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: white;
-        padding: 1rem;
-        z-index: 1000;
-        box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
-    }
-    
-    /* 调整输入框容器宽度 */
-    .query-input {
-        width: calc(100% - 16rem) !important;  /* 减去侧边栏宽度 */
-        margin: 0 auto;
-    }
-    
-    /* 修复滚动条问题 */
-    .stApp {
-        padding-bottom: 6rem !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
     # 确保有活跃的会话
     from core.query import ensure_active_session
     ensure_active_session()

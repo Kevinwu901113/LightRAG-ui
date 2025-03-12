@@ -4,7 +4,6 @@ import ollama
 import time
 import json
 from pathlib import Path
-
 # 导入自定义模块
 from core.session import load_session_history, initialize_session_state
 from core.query import process_query
@@ -68,45 +67,18 @@ def display_conversation():
 
 def main():
     """主程序入口"""
-    st.set_page_config(page_title="LightRAG", page_icon="🔍")
+    st.set_page_config(
+        page_title="LightRAG Query Interface",
+        page_icon="👏",
+        layout="wide",
+        initial_sidebar_state="expanded",
+        menu_items=None
+    )
+    load_css()
     st.title("LightRAG Query Interface")
     
     # 确保在任何其他操作前初始化会话状态
     initialize_session_state()
-    
-    # 添加自定义CSS样式，确保对话框文字为黑色
-    st.markdown("""
-    <style>
-    /* 用户气泡样式 */
-    .user-bubble {
-        background-color: #e6f7ff;
-        border-radius: 15px;
-        padding: 10px 15px;
-        margin-bottom: 10px;
-        color: black !important;
-    }
-    
-    /* 机器人气泡样式 */
-    .bot-bubble {
-        background-color: #f0f0f0;
-        border-radius: 15px;
-        padding: 10px 15px;
-        margin-bottom: 10px;
-        color: black !important;
-    }
-    
-    /* 确保所有对话文本为黑色 */
-    .stChatMessage div[data-testid="stMarkdownContainer"] p {
-        color: black !important;
-    }
-    
-    /* 修复滚动条问题 */
-    .stApp {
-        padding-bottom: 6rem !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
     if st.session_state.get('refresh_sidebar_needed', False):
         st.session_state.refresh_sidebar_needed = False
         st.session_state.sessions = load_session_history()
@@ -143,7 +115,14 @@ def main():
     except Exception as e:
         st.error(f"应用程序运行时出错: {str(e)}")
 
-
+def load_css():
+        """加载自定义CSS文件"""
+        css_file = os.path.join(os.path.dirname(__file__), "static", "style.css")
+        if os.path.exists(css_file):
+            with open(css_file, 'r', encoding='utf-8') as f:  # 明确指定 UTF-8 编码
+                st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
+    # 在应用程序初始化部分添加
+    # 在应用程序启动时调用
     main()

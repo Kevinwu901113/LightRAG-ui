@@ -1144,20 +1144,6 @@ def main():
                                 # 刷新会话列表
                                 st.session_state.sessions = load_session_history()
                                 st.rerun()
-                    
-                    with col3:
-                        # 导出按钮
-                        if st.button("💾", key=f"export_{idx}", help="导出此会话"):
-                            conversation = load_conversation(session["filename"])
-                            # 创建导出文件
-                            export_data = json.dumps(conversation, ensure_ascii=False, indent=2)
-                            st.download_button(
-                                label="下载",
-                                data=export_data,
-                                file_name=f"export_{session['filename']}",
-                                mime="application/json",
-                                key=f"download_{idx}"
-                            )
                 
                 # 如果没有历史会话，显示提示
                 if not st.session_state.sessions:
