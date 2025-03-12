@@ -5,7 +5,7 @@ import streamlit as st
 from typing import Dict, Any
 from datetime import datetime
 from lightrag import QueryParam
-from query import insert1, query1, prompt_1, prompt_2, prompt_3, direct_query
+from query import insert1, query1, prompt_1, prompt_2, prompt_3,auto_rag,direct_query
 
 from utils.csv_utils import clean_markdown_csv, fix_csv_text
 from utils.file_utils import reset_corrupted_kb_files
@@ -48,7 +48,7 @@ def create_new_session():
     # 更新会话列表
     st.session_state.sessions = load_session_history()
     return new_session_id
-def process_kb_query(query: str, model_index: int, params: Dict[str, Any]):
+def process_kb_query(query: str, model_index: int, params: Dict[str, Any],use_autoRAG_base=True):
     """处理基于知识库的查询"""
     try:
         # 获取工作目录和模型名称
@@ -97,7 +97,10 @@ def process_kb_query(query: str, model_index: int, params: Dict[str, Any]):
                 # 清理CSV格式的知识
                 knowledge = clean_markdown_csv(knowledge)
                 knowledge = fix_csv_text(knowledge)
-            
+            if use_autoRAG_base:
+                success,ans_his=auto_rag(query,answer,knowledge,5,model_name,temperature)
+                answer=ans_his["answer"]
+                history=ans_his["history"]
             return answer, knowledge
         else:
             # 如果结果不是字典，直接返回
@@ -137,7 +140,7 @@ def handle_kb_error(error: json.JSONDecodeError, work_folder: str):
     except Exception as e:
         st.error(f"重置知识库文件失败: {str(e)}")
 
-def process_query(query, use_knowledge_base=True):
+def process_query(query, use_knowledge_base=True,use_autoRAG_base=True):
     """处理用户查询"""
     try:
         # 确保有活跃的会话
@@ -179,7 +182,7 @@ def process_query(query, use_knowledge_base=True):
             # 根据是否使用知识库选择不同的处理方式
             if use_knowledge_base:
                 print(f"使用知识库处理查询: {query}")
-                answer, knowledge = process_kb_query(query, model_index, params)
+                answer, knowledge = process_kb_query(query, model_index, params,use_autoRAG_base)
             else:
                 print(f"直接使用模型处理查询: {query}")
                 answer, knowledge = process_direct_query(query, model_index, temperature)

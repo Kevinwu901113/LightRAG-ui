@@ -213,7 +213,7 @@ def create_sidebar():
                 if st.button("💾 立即保存当前会话"):
                     save_before_exit()
                     st.success("会话已保存！")
-                    
+                st.session_state.kb_params={}    
                 if use_knowledge_base:
                     st.session_state.kb_params = create_knowledge_base_settings()
         
@@ -223,8 +223,9 @@ def create_sidebar():
             st.session_state.show_settings = not st.session_state.show_settings
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
-        
-        return use_knowledge_base
+        if st.session_state.kb_params!={}:
+            return use_knowledge_base,st.session_state.kb_params["use_autorag_base"]
+        return use_knowledge_base,False
 
 # 其他函数保持不变
 def create_control_buttons():
@@ -246,8 +247,9 @@ def create_knowledge_base_settings() -> Dict[str, Any]:
         index=0,
         key="query_mode_select"
     )
-
+    
     params = {}
+    params['use_autorag_base'] = st.toggle("启用autoRAG功能", value=True)
     with st.expander("召回数量设置", expanded=False):
         params['entity_count'] = create_recall_settings("实体", "entity", 5000)
         params['relation_count'] = create_recall_settings("关系", "relation", 5000)
@@ -264,7 +266,7 @@ def create_knowledge_base_settings() -> Dict[str, Any]:
 
     create_control_buttons()
     return params
-def create_query_section(use_knowledge_base=True):
+def create_query_section(use_knowledge_base=True,use_autoRAG_base=True):
     """创建查询区域"""
     # 添加底部固定输入框样式
     st.markdown("""
@@ -335,7 +337,7 @@ def create_query_section(use_knowledge_base=True):
                 
                 # 处理查询
                 from core.query import process_query
-                process_query(current_query, use_knowledge_base)
+                process_query(current_query, use_knowledge_base,use_autoRAG_base)
                 
                 # 使用 Streamlit 的方式清空输入框 - 通过设置一个标记
                 st.session_state.clear_input = True

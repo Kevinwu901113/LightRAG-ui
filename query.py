@@ -7,6 +7,9 @@ from lightrag.llm import openai_complete_if_cache, openai_embedding, ollama_embe
 import numpy as np
 from rich.progress import Progress
 from openai import OpenAI
+import asyncio
+import json
+from Auto_RAG_async import judge_node,generate_reasoning
 WORKING_DIR = "./dickens1"
 xinference_url = 'http://127.0.0.1:9997/v1'
 prompt_1="""
@@ -130,7 +133,33 @@ id,     source, target, description
 3,      "北京市","经纬度", "北京市纬度是北纬39.4°—41.6°之间,经度是东经115.7°—117.4°" 
 ################
 """
+prompt_4="""---Role---
 
+您是一个LLM问答分析助手，帮助分析Data tables中哪些原文部分导致LLM模型生成了这样的Answer，我会提供给你Data tables，Question以及Answer。
+
+---Goal---
+
+只返回相应的Data tables原文部分，不要作多余回答，不要生成无关信息。不要直接返回Answer里面的内容。如果Data tables没有对应的内容，返回“无”。
+
+---Question---
+
+{question}
+
+---Question End---
+
+---Answer---
+
+{answer}
+
+---Answer End---
+
+---Data Tables---
+
+{context_data}
+
+---Data Tables End---
+
+"""
 async def llm_model_func(
     prompt, system_prompt=None, history_messages=[],model_name= "deepseek-chat", **kwargs
 ) -> str:
@@ -350,3 +379,126 @@ def query1(working_dir=WORKING_DIR, query='', model_name='deepseek-chat', i=0, p
         answer = rag.query(query, param=param)
         return answer
 
+def autorag(question,ans,source,max_iter,model_name,temperature):
+    initial_tem = {"ans": "", "source": []}
+    initial_tem["ans"] = ans
+    p=prompt_4.format(question=question,answer=ans,context_data=source)
+    ans1=asyncio.run(direct_query(p, model_name,temperature))
+    if history is None:
+        history = []
+    history.append({
+        "type": "initial",
+        "query": question,
+        "answer":ans,
+        # "response": initial_tem
+        "sources": source
+    })
+    judge_output = judge_node(
+        query=question,
+        rag_response=json.dumps(initial_tem, ensure_ascii=False),
+        modelname=model_name
+    )
+    while max_iter > 0 and current_iter <= max_iter:
+        # print(f"\n=== 第 {current_iter + 1} 轮迭代 ===")
+        
+
+        if 'Final Answer：' in judge_output:
+            
+            final_answer = judge_output.split("Final Answer：")[1].strip()
+            # final_answer = judge_output
+            break
+        
+        elif 'Refined Query' in judge_output:
+            refined_query = judge_output.split("Refined Query：")[1].strip()
+
+            # 不查询分解，直接召回
+            tem = {"ans": "", "source": []}
+            source= query1(
+            query=question,
+            param=QueryParam(
+                mode='hybrid',
+                only_need_context=True
+            ),
+            i=0 if model_name=='deepseek-chat' else 1,
+            model_name=model_name,
+            working_dir=dir,
+            use_kb=True,  # 确保使用知识库
+            temperature=0.8
+            )
+            p=prompt_1.format(query=question,context_data=source)
+            ans=asyncio.run(direct_query(p, model_name,temperature))
+            
+            tem["ans"] = ans
+
+            # # 不总结
+            # tem["source"] = sources
+
+            # 总结
+            p=prompt_4.format(question=question,answer=ans,context_data=source)
+            ans1=asyncio.run(direct_query(p, model_name,temperature))
+            
+            tem["source"].append(ans1)
+
+            # 生成推理规划
+            reasoning = generate_reasoning(
+                query=refined_query,
+                rag_response=json.dumps(tem, ensure_ascii=False)
+            )
+
+            # print("推理节点输出: ", reasoning)
+           
+
+            # 更新判断 带reasoning
+            judge_output = judge_node(
+                query=question,  # 始终基于原始问题判断
+                rag_response=json.dumps(tem, ensure_ascii=False),
+                reasoning=reasoning
+            )
+
+            history.append({
+                "type": "refined",
+                "query": refined_query,
+                "reasoning": reasoning,
+                "response": {
+                    "ans": ans,
+                    "sources": tem["source"]
+                }
+            })
+
+            # print("判断节点输出：", judge_output)
+            
+
+
+            current_iter += 1
+
+        max_iter -= 1
+    # 结果处理
+    if final_answer:
+        
+
+        return True, {
+        "ans": final_answer,
+        # "source": sources,
+        "history": history
+        }
+        # return {
+        #     "status": "success",
+        #     "answer": final_answer,
+        #     "iterations": current_iter,
+        #     "history": history
+        # }
+    else:
+        # print(f"\n=== 未找到Final Answer ===")
+
+        return False, {
+        "ans": initial_tem["ans"],
+        # "source": sources,
+        "history": history
+        }
+        # return {
+        #     "status": "max_iter_reached",
+        #     "answer": initial_tem["ans"],  # 返回初始答案
+        #     "iterations": current_iter,
+        #     "history": history
+        # }
+   

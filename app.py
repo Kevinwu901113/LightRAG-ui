@@ -82,10 +82,10 @@ def main():
             st.warning(f"获取模型列表时出错: {str(e)}。使用默认模型列表。")
     
     # 创建侧边栏并获取是否使用知识库
-    use_knowledge_base = create_sidebar()
+    use_knowledge_base,use_autorag_base = create_sidebar()
     
     # 创建主查询区
-    create_query_section(use_knowledge_base)
+    create_query_section(use_knowledge_base,use_autorag_base)
 
 if __name__ == "__main__":
     main()
