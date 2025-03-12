@@ -77,13 +77,13 @@ def main():
                 st.warning(f"获取模型列表时出错: {str(e)}")
         
         # 创建侧边栏并获取是否使用知识库
-        use_knowledge_base = create_sidebar()
+        use_knowledge_base,use_autorag_base = create_sidebar()
         
         # 显示历史对话
         display_conversation()
         
         # 创建主查询区
-        create_query_section(use_knowledge_base)
+        create_query_section(use_knowledge_base,use_autorag_base)
     except Exception as e:
         st.error(f"应用程序运行时出错: {str(e)}")
 

@@ -50,7 +50,7 @@ def create_new_session():
     
     # 不立即保存，等到有内容时再保存
     return st.session_state.current_session_id
-def process_kb_query(query: str, model_index: int, params: Dict[str, Any]):
+def process_kb_query(query: str, model_index: int, params: Dict[str, Any],use_autoRAG_base=True):
     """处理基于知识库的查询"""
     try:
         # 获取工作目录和模型名称

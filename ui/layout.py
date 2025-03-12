@@ -225,7 +225,7 @@ def create_sidebar():
                 if st.button("💾 立即保存当前会话"):
                     save_before_exit()
                     st.toast("会话已保存！", icon="✅")
-                    
+                st.session_state.kb_params={'use_autorag_base':False}    
                 if use_knowledge_base:
                     st.session_state.kb_params = create_knowledge_base_settings()
         
