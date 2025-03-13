@@ -134,8 +134,8 @@ def create_sidebar():
 
                 
                 # 如果没有历史会话，显示提示
-                if not st.session_state.sessions:
-                    st.toast("没有历史会话记录，开始新的对话吧！", icon="ℹ️")
+                # if not st.session_state.sessions:
+                #     st.toast("没有历史会话记录，开始新的对话吧！", icon="ℹ️")
                 
                 # 确保use_knowledge_base变量被正确设置
                 use_knowledge_base = st.session_state.use_knowledge_base
