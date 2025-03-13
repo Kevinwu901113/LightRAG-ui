@@ -28,7 +28,7 @@ def initialize_session_state():
         'use_knowledge_base': True,
         'use_autorag_base': False,  # 添加AutoRAG开关默认值
         'temperature': 0.7,
-        'llm_model': 'qwen2.5:latest',
+        'llm_model': 'deepseek-chat',
         'query_submitted': False,
         'kb_params': {'custom_work_folder': 'dickens1', 'use_autorag_base': False},  # 确保kb_params有默认值
     }

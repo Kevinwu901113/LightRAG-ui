@@ -41,41 +41,6 @@ def init_session_state():
 
 def display_conversation():
     """显示当前会话的对话历史"""
-    # 添加自定义CSS样式
-    st.markdown("""
-    <style>
-    /* 用户气泡样式 */
-    .user-bubble {
-        background-color: #e6f7ff;
-        border-radius: 15px;
-        padding: 10px 15px;
-        margin-bottom: 10px;
-        color: black !important;
-    }
-    
-    /* 机器人气泡样式 */
-    .bot-bubble {
-        background-color: #f0f0f0;
-        border-radius: 15px;
-        padding: 10px 15px;
-        margin-bottom: 10px;
-        color: black !important;
-    }
-    
-    /* 确保所有对话文本为黑色 */
-    .stChatMessage div[data-testid="stMarkdownContainer"] p {
-        color: black !important;
-    }
-    
-    /* 修复滚动条问题 */
-    .stApp {
-        padding-bottom: 6rem !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
-
-    
     # 遍历对话历史并显示
     for message in st.session_state.conversation:
         # 显示用户问题
