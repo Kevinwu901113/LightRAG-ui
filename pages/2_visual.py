@@ -384,32 +384,6 @@ def display_3d_result(result):
     # 显示图形
     st.plotly_chart(result["figure"], use_container_width=True)
 
-# 添加异步处理相关函数
-def async_generate_visualization(G, vis_type, result_key):
-    """异步生成可视化结果"""
-    try:
-        if vis_type == "2d":
-            result = prepare_2d_visualization(G)
-        else:  # 3d
-            result = prepare_3d_visualization(G)
-        
-        # 将结果存入会话状态
-        st.session_state[result_key] = result
-        st.session_state[f"{vis_type}_generating"] = False
-        st.session_state[f"{vis_type}_completed"] = True
-        
-        # 触发重新渲染
-        st.experimental_rerun()
-    except Exception as e:
-        import traceback
-        st.session_state[result_key] = {
-            "status": "error", 
-            "error": str(e), 
-            "traceback": traceback.format_exc()
-        }
-        st.session_state[f"{vis_type}_generating"] = False
-        st.session_state[f"{vis_type}_completed"] = True
-
 def main():
     """主函数"""
     # 设置中文字体
@@ -438,14 +412,6 @@ def main():
         st.session_state.result_2d = None
     if "result_3d" not in st.session_state:
         st.session_state.result_3d = None
-    if "vis_2d_generating" not in st.session_state:
-        st.session_state["vis_2d_generating"] = False
-    if "vis_3d_generating" not in st.session_state:
-        st.session_state["vis_3d_generating"] = False
-    if "vis_2d_completed" not in st.session_state:
-        st.session_state["vis_2d_completed"] = False
-    if "vis_3d_completed" not in st.session_state:
-        st.session_state["vis_3d_completed"] = False
     
     # 创建选项卡
     tab1, tab2 = st.tabs(["2D可视化", "3D可视化"])
@@ -463,41 +429,24 @@ def main():
             st.session_state.graph_loaded = True
             st.session_state.graph_data = G
             
-            # 重置生成状态
-            st.session_state["vis_2d_generating"] = True
-            st.session_state["vis_3d_generating"] = True
-            st.session_state["vis_2d_completed"] = False
-            st.session_state["vis_3d_completed"] = False
-            
-            # 启动异步线程生成可视化
-            threading.Thread(
-                target=async_generate_visualization, 
-                args=(G, "2d", "result_2d")
-            ).start()
-            
-            threading.Thread(
-                target=async_generate_visualization, 
-                args=(G, "3d", "result_3d")
-            ).start()
+            # 生成两种可视化结果
+            with st.spinner('正在生成2D可视化...'):
+                st.session_state.result_2d = prepare_2d_visualization(G)
+            with st.spinner('正在生成3D可视化...'):
+                st.session_state.result_3d = prepare_3d_visualization(G)
                 
         except Exception as e:
             st.error(f"加载图形文件失败: {str(e)}")
             import traceback
             st.error(f"详细错误: {traceback.format_exc()}")
     
-    # 在选项卡中显示结果或进度
+    # 在选项卡中显示结果
     with tab1:
-        if st.session_state["vis_2d_generating"]:
-            st.info("正在生成2D可视化，请稍候...")
-            st.spinner("处理中...")
-        elif st.session_state.result_2d:
+        if st.session_state.result_2d:
             display_2d_result(st.session_state.result_2d)
     
     with tab2:
-        if st.session_state["vis_3d_generating"]:
-            st.info("正在生成3D可视化，请稍候...")
-            st.spinner("处理中...")
-        elif st.session_state.result_3d:
+        if st.session_state.result_3d:
             display_3d_result(st.session_state.result_3d)
 
 if __name__ == "__main__":
