@@ -257,55 +257,43 @@ def create_query_section(use_knowledge_base=True,use_autoRAG_base=True):
                 # 创建params参数字典
                 params = {
                     "temperature": st.session_state.temperature,
-                    "custom_work_folder": "dickens1"  # 或其他适当的工作文件夹
+                    "custom_work_folder": st.session_state.kb_params.get("custom_work_folder", "dickens1")
                 }
+                
+                # 添加其他必要的参数
+                if use_autoRAG_base:
+                    params["use_autorag_base"] = True
                 
                 # 处理查询
                 process_query(current_query, use_knowledge_base, params)
                 
-                # 设置一个标记，表示需要清空输入框
-                st.session_state.clear_input = True
-
-                # 标记查询已提交
+                # chat_input不需要手动清空，它会在提交后自动清空
+                # 但我们仍然需要标记查询已提交
                 st.session_state.query_submitted = True
                 
                 # 设置刷新侧边栏标志
                 st.session_state.refresh_sidebar_needed = True
         
         with col_query:
-            # 修改：检查是否需要清空输入框
-            if st.session_state.get('clear_input', False):
-                # 清除标记
-                st.session_state.clear_input = False
-                # 使用空字符串作为默认值
-                default_value = ""
-            else:
-                default_value = st.session_state.get('query_input', "")
-                
-            # 使用 key 确保输入框状态正确更新，并设置默认值
-            query = st.text_input(
-                "Enter your query",
+            # 使用chat_input，它会自动处理清空和提交
+            query = st.chat_input(
+                "请输入您的问题...",
                 key="query_input",
-                label_visibility="collapsed",
-                placeholder="请输入您的问题...",
-                value=default_value,  # 使用动态默认值
-                on_change=handle_submit
+                on_submit=handle_submit
             )
-        
-        with col_button:
-            # 发送按钮 - 点击时触发相同的回调
-            if st.button("🚀", help="发送", use_container_width=True, key="send_button"):
+            
+            # 如果chat_input直接返回了查询文本（而不是通过session_state），则处理它
+            if query:
+                st.session_state.query_input = query
                 handle_submit()
+
         
         st.markdown('</div>', unsafe_allow_html=True)
     
     # 如果有待处理的查询，处理它
-    if 'current_query' in st.session_state and st.session_state.get('query_submitted', False):
+    if st.session_state.get('query_submitted', False):
         # 重置标志，防止重复处理
         st.session_state.query_submitted = False
-        # 清除当前查询
-        if 'current_query' in st.session_state:
-            del st.session_state.current_query
         
         # 触发页面重新加载以显示新消息
         st.rerun()
