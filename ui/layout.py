@@ -10,7 +10,7 @@ from ui.components import create_recall_settings, create_file_upload_section, cr
 from utils.model_utils import get_model_names
 
 # 常量定义
-WORKING_DIR = "./dickens1"
+WORKING_DIR = "./knowledge_base"
 WORKING_DIR1 = "tem"
 UPLOAD_FOLDER = "uploads"
 DEFAULT_RECALL_COUNT = 5

@@ -10,7 +10,7 @@ from openai import OpenAI
 import asyncio
 import json
 from Auto_RAG_async import judge_node,generate_reasoning
-WORKING_DIR = "./dickens1"
+WORKING_DIR = "./knowledge_base"
 xinference_url = 'http://127.0.0.1:9997/v1'
 prompt_1="""
 ---角色---
@@ -191,10 +191,10 @@ rag = LightRAG(
         working_dir=WORKING_DIR,
         llm_model_func=llm_model_func,
         embedding_func=EmbeddingFunc(
-            embedding_dim=768,
+            embedding_dim=1024,
             max_token_size=8192,
             func=lambda texts: ollama_embedding(
-                texts, embed_model="nomic-embed-text", host="http://localhost:11434"
+                texts, embed_model="bge-m3", host="http://localhost:11434"
             ),
         ),
     )
@@ -207,10 +207,10 @@ rag1 = LightRAG(
     llm_model_max_token_size=32768,
     llm_model_kwargs={"host": "http://localhost:11434", "options": {"num_ctx": 32768}},
     embedding_func=EmbeddingFunc(
-        embedding_dim=768,
+        embedding_dim=1024,
         max_token_size=8192,
         func=lambda texts: ollama_embedding(
-            texts, embed_model="nomic-embed-text", host="http://localhost:11434"
+            texts, embed_model="bge-m3", host="http://localhost:11434"
         ),
     ),
 )
@@ -222,10 +222,10 @@ def insert1(working_dir=WORKING_DIR,text_content=[],model_name='deepseek-chat',i
         llm_model_func=llm_model_func,
         llm_model_name=model_name,
         embedding_func=EmbeddingFunc(
-            embedding_dim=768,
+            embedding_dim=1024,
             max_token_size=8192,
             func=lambda texts: ollama_embedding(
-                texts, embed_model="nomic-embed-text", host="http://localhost:11434"
+                texts, embed_model="bge-m3", host="http://localhost:11434"
             ),
         ),
         )
@@ -239,10 +239,10 @@ def insert1(working_dir=WORKING_DIR,text_content=[],model_name='deepseek-chat',i
         llm_model_max_token_size=32768,
         llm_model_kwargs={"host": "http://localhost:11434", "options": {"num_ctx": 32768}},
         embedding_func=EmbeddingFunc(
-            embedding_dim=768,
+            embedding_dim=1024,
             max_token_size=8192,
             func=lambda texts: ollama_embedding(
-                texts, embed_model="nomic-embed-text", host="http://localhost:11434"
+                texts, embed_model="bge-m3", host="http://localhost:11434"
             ),
         ),
         )
@@ -353,10 +353,10 @@ def query1(working_dir=WORKING_DIR, query='', model_name='deepseek-chat', i=0, p
             llm_model_func=llm_model_func,
             llm_model_name=model_name,
             embedding_func=EmbeddingFunc(
-                embedding_dim=768,
+                embedding_dim=1024,
                 max_token_size=8192,
                 func=lambda texts: ollama_embedding(
-                    texts, embed_model="nomic-embed-text", host="http://localhost:11434"
+                    texts, embed_model="bge-m3", host="http://localhost:11434"
                 ),
             ),
         )
@@ -371,10 +371,10 @@ def query1(working_dir=WORKING_DIR, query='', model_name='deepseek-chat', i=0, p
             llm_model_max_token_size=32768,
             llm_model_kwargs={"host": "http://localhost:11434", "options": {"num_ctx": 32768}},
             embedding_func=EmbeddingFunc(
-                embedding_dim=768,
+                embedding_dim=1024,
                 max_token_size=8192,
                 func=lambda texts: ollama_embedding(
-                    texts, embed_model="nomic-embed-text", host="http://localhost:11434"
+                    texts, embed_model="bge-m3", host="http://localhost:11434"
                 ),
             ),
         )

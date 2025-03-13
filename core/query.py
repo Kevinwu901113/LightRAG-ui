@@ -56,13 +56,13 @@ def process_kb_query(query: str, model_index: int, params: Dict[str, Any], use_a
         # 获取工作目录和模型名称，添加默认值处理
         if not params:
             params = {'custom_work_folder': 'dickens1', 'use_autorag_base': False}
-        work_folder = params.get('custom_work_folder', params.get('work_folder', './dickens1'))
+        work_folder = params.get('custom_work_folder', params.get('work_folder', './knowledge_base'))
         
         # 检查工作目录是否存在
         if not os.path.exists(work_folder):
             # 尝试使用dickens1目录作为备选
-            if os.path.exists('./dickens1'):
-                work_folder = './dickens1'
+            if os.path.exists('./knowledge_base'):
+                work_folder = './knowledge_base'
                 print(f"原工作目录不存在，切换到备选目录: {work_folder}")
             else:
                 return f"知识库查询失败: 知识库目录 '{work_folder}' 不存在，请先上传文件创建知识库。", ""

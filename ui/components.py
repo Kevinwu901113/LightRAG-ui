@@ -8,7 +8,7 @@ from core.session import save_before_exit, save_conversation, delete_conversatio
 
 # 常量定义
 DEFAULT_RECALL_COUNT = 5
-WORKING_DIR = "./dickens1"
+WORKING_DIR = "./knowledge_base"
 WORKING_DIR1 = "tem"
 UPLOAD_FOLDER = "uploads"
 

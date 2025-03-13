@@ -24,5 +24,5 @@ prompt_4 = """
 """
 
 # 共享的常量
-WORKING_DIR = "./dickens1"
+WORKING_DIR = "./knowledge_base"
 WORKING_DIR1 = "tem"
