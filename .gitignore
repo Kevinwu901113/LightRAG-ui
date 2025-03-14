@@ -3,3 +3,5 @@ __pycache__/
 dickens1/lightrag.log
 knowledge_base/
 dickens_test/
+tmp/
+temp/
