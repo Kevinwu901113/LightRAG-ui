@@ -386,8 +386,8 @@ def autorag(question,ans,source,max_iter,model_name,temperature):
     initial_tem["ans"] = ans
     p=prompt_4.format(question=question,answer=ans,context_data=source)
     ans1=asyncio.run(direct_query(p, model_name,temperature))
-    if history is None:
-        history = []
+    
+    history = []
     history.append({
         "type": "initial",
         "query": question,
@@ -400,6 +400,8 @@ def autorag(question,ans,source,max_iter,model_name,temperature):
         rag_response=json.dumps(initial_tem, ensure_ascii=False),
         modelname=model_name
     )
+    current_iter=0
+    final_answer=''
     while max_iter > 0 and current_iter <= max_iter:
         # print(f"\n=== 第 {current_iter + 1} 轮迭代 ===")
         
@@ -475,6 +477,7 @@ def autorag(question,ans,source,max_iter,model_name,temperature):
 
         max_iter -= 1
     # 结果处理
+    
     if final_answer:
         
 

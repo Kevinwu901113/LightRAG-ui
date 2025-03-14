@@ -257,7 +257,8 @@ def create_query_section(use_knowledge_base=True,use_autoRAG_base=True):
                 # 创建params参数字典
                 params = {
                     "temperature": st.session_state.temperature,
-                    "custom_work_folder": st.session_state.kb_params.get("custom_work_folder", "dickens1")
+                    "custom_work_folder": st.session_state.kb_params.get("custom_work_folder", "dickens1"),
+                    "use_autorag_base":False
                 }
                 
                 # 添加其他必要的参数

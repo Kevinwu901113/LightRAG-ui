@@ -14,7 +14,7 @@ import threading
 from queue import Queue
 
 # 默认工作目录
-WORKING_DIR = "./dickens_test"
+WORKING_DIR = "./knowledge_base"
 
 # ===== GraphML文件处理函数 =====
 def read_graphml_file(file_path):
@@ -222,13 +222,13 @@ def create_2d_network_visualization(G):
         edge["smooth"] = {"type": "continuous"}
     
     # 清理可能包含问题字符的数据
-    for node in net.nodes:
-        if "title" in node and node["title"]:
-            # 移除或替换可能导致编码问题的字符
-            node["title"] = str(node["title"]).encode('ascii', 'ignore').decode('ascii')
-        if "label" in node and node["label"]:
-            # 确保标签是ASCII兼容的
-            node["label"] = str(node["label"]).encode('ascii', 'ignore').decode('ascii')
+    # for node in net.nodes:
+    #     if "title" in node and node["title"]:
+    #         # 移除或替换可能导致编码问题的字符
+    #         node["title"] = str(node["title"]).encode('ascii', 'ignore').decode('ascii')
+    #     if "label" in node and node["label"]:
+    #         # 确保标签是ASCII兼容的
+    #         node["label"] = str(node["label"]).encode('ascii', 'ignore').decode('ascii')
     
     return net
 

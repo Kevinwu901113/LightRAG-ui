@@ -9,7 +9,7 @@ from datetime import datetime
 from lightrag import QueryParam
 from query import insert1, query1, prompt_1, prompt_2, prompt_3,autorag,direct_query
 
-from utils.csv_utils import clean_markdown_csv, fix_csv_text
+from utils.csv_utils import clean_markdown_csv, fix_csv_text,parse_csv_with_pipe_quotechar
 from utils.file_utils import reset_corrupted_kb_files
 from core.display import display_entities, display_relationships, display_sources
 from core.session import save_conversation, load_conversation, load_session_history, generate_session_id
@@ -55,7 +55,7 @@ def process_kb_query(query: str, model_index: int, params: Dict[str, Any], use_a
     try:
         # 获取工作目录和模型名称，添加默认值处理
         if not params:
-            params = {'custom_work_folder': 'dickens1', 'use_autorag_base': False}
+            params = {'custom_work_folder': 'knowledge_base', 'use_autorag_base': False}
         work_folder = params.get('custom_work_folder', params.get('work_folder', './knowledge_base'))
         
         # 检查工作目录是否存在
@@ -81,17 +81,8 @@ def process_kb_query(query: str, model_index: int, params: Dict[str, Any], use_a
         print(f"使用知识库目录: {work_folder}")
         
         # 调用查询函数
-        result = query1(
-            working_dir=work_folder,
-            query=query,
-            model_name=model_name,
-            i=model_index,
-            param=query_param,
-            use_kb=True,
-            temperature=temperature
-        )
         query_param = QueryParam(mode="hybrid", only_need_context=True)
-        knowledge = query1(
+        context = query1(
             working_dir=work_folder,
             query=query,
             model_name=model_name,
@@ -100,7 +91,51 @@ def process_kb_query(query: str, model_index: int, params: Dict[str, Any], use_a
             use_kb=True,
             temperature=temperature
         )
-        return result, knowledge
+        entities_text = context.split("-----实体-----")[1].split("-----关系-----")[0]
+        context1=''
+        context2=''
+        context3=''
+        if(st.session_state.kb_params['entity_count']!=float('inf')):
+            
+            e_prompt=prompt_2.format(k=int(st.session_state.kb_params['entity_count']),query=query,context_data=entities_text)
+           
+            context1+=asyncio.run(direct_query(query=e_prompt,model_name=model_name,temperature=temperature))
+            context1+='\n'
+            
+        else:
+            context1+=entities_text
+            context1+='\n'
+        relation_text=context.split("-----关系-----")[1].split("-----信息来源-----")[0].strip()
+        if(st.session_state.kb_params['relation_count']!=float('inf')):
+            
+            e_prompt=prompt_3.format(k=int(st.session_state.kb_params['relation_count']),query=query,context_data=relation_text)
+            context2+=asyncio.run(direct_query(query=e_prompt,model_name=model_name,temperature=temperature))
+            context2+='\n'
+        else:
+            context2+=relation_text
+            context2+='\n'
+        sources_text=context.split("-----信息来源-----")[1].strip()
+        if(st.session_state.kb_params['doc_count']!=float('inf')):
+            
+            sources_text = clean_markdown_csv(sources_text)
+            
+            fixed_csv_text = fix_csv_text(sources_text)
+            
+            e_prompt=prompt_2.format(k=int(st.session_state.kb_params['doc_count']),query=query,context_data=fixed_csv_text)
+            
+            context3+=asyncio.run(direct_query(query=e_prompt,model_name=model_name,temperature=temperature))
+            context3+='\n'
+        else:
+            context3+=sources_text
+            context3+='\n'
+        context="-----实体-----\n"+context1+"-----关系-----\n"+context2+"-----信息来源-----\n"+context3    
+        a_prompt=prompt_1.format(query=query,context_data=context)
+        result=asyncio.run(direct_query(query=a_prompt,model_name=model_name,temperature=temperature))
+        if params['use_autorag_base']:
+            success,ans_his=autorag(query,result,context,5,model_name,temperature)
+            result=ans_his["ans"]
+            history=ans_his["history"]
+        return result, context
         # # 解析结果
         # if isinstance(result, dict):
         #     answer = result.get('answer', '')

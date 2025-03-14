@@ -236,6 +236,7 @@ def generate_reasoning(query, rag_response,model_name='deepseek-chat'):
 '''看RAG回答版本'''
 # 判断节点
 async def async_judge_node(query, rag_response, reasoning=None,modelname='deepseek-chat') -> str:
+    
     judge_template_system = """
     你是一个聪明的AI助手，负责判断是否需要重写问题查询，遵循以下知识问答判定流程来输出。
     
@@ -423,6 +424,7 @@ async def async_judge_node(query, rag_response, reasoning=None,modelname='deepse
     # print("完成回复")
 
     # 本地模型调用
+    from query import direct_query
     response= await direct_query(query=formatted_prompt,model_name=modelname,temperature=0.8,system_p=judge_template_system)
 
     return response

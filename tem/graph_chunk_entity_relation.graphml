@@ -1,0 +1,296 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d6" for="edge" attr.name="source_id" attr.type="string"/>
+<key id="d5" for="edge" attr.name="keywords" attr.type="string"/>
+<key id="d4" for="edge" attr.name="description" attr.type="string"/>
+<key id="d3" for="edge" attr.name="weight" attr.type="double"/>
+<key id="d2" for="node" attr.name="source_id" attr.type="string"/>
+<key id="d1" for="node" attr.name="description" attr.type="string"/>
+<key id="d0" for="node" attr.name="entity_type" attr.type="string"/>
+<graph edgedefault="undirected"><node id="&quot;公明镇&quot;">
+  <data key="d0">"地理位置"</data>
+  <data key="d1">{"time": "未知", "place": "未知", "event": "公明镇位于宝安区", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;黄牛&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "1973年-2004年", "place": "公明镇", "event": "黄牛是公明镇的主要耕牛，数量和用途发生变化", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;水牛&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "1973年-2004年", "place": "公明镇", "event": "水牛在改革开放后逐渐减少", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;养猪场&quot;">
+  <data key="d0">"地理位置"</data>
+  <data key="d1">{"time": "1956年至1980年代初", "place": "公明镇", "event": "集体和生产队猪场饲养规模的变化", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;1448头&quot;">
+  <data key="d0">"人数"</data>
+  <data key="d1">{"time": "1973年", "place": "公明镇", "event": "1973年公明镇从事农役的黄牛数量为1448头", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;2004年&quot;">
+  <data key="d0">"时间"</data>
+  <data key="d1">{"time": "y2004", "place": "公明镇", "event": "2004年黄牛和水牛的数量均减少至10头", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;22430只&quot;">
+  <data key="d0">"人数"</data>
+  <data key="d1">{"time": "1973年", "place": "公明镇", "event": "1973年公明镇生猪饲养量为22430只", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;91个&quot;">
+  <data key="d0">"人数"</data>
+  <data key="d1">{"time": "2004年", "place": "公明镇", "event": "2004年公明镇共有养猪场91个", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;546.73万只&quot;">
+  <data key="d0">"人数"</data>
+  <data key="d1">{"time": "1990年", "place": "公明镇", "event": "1990年公明镇鸡饲养量为546.73万只", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;康达尔128&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "1996年起", "place": "公明镇", "event": "引进的黄鸡父母代品种用于养鸡业", other: ""}&lt;SEP&gt;{"time": "1996年起", "place": "公明镇", "event": "引进的黄鸡父母代品种用于养鸡业，并取得良好效益", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;水鱼场&quot;">
+  <data key="d0">"地理位置"</data>
+  <data key="d1">{"time": "1996年", "place": "玉律村", "event": "创建了70亩规模的水鱼场，生产水鱼", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;渔业&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "建国后-2004年", "place": "公明镇", "event": "公明镇渔业的发展历程和主要成就", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;鱼苗场&quot;">
+  <data key="d0">"地理位置"</data>
+  <data key="d1">{"time": "1960年", "place": "公明塘尾大队", "event": "政府扶持下的鱼苗场建立", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;生鱼&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "未知", "place": "公明镇", "event": "引进的淡水新产品之一，丰富渔业市场", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;桂花鱼&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "未知", "place": "公明镇", "event": "引进的淡水新产品之一，丰富渔业市场", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;加州鲈鱼&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "未知", "place": "公明镇", "event": "引进的淡水新产品之一，丰富渔业市场", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;白鲳&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "未知", "place": "公明镇", "event": "引进的淡水新产品之一，丰富渔业市场", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;鳗鱼&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "未知", "place": "公明镇", "event": "引进的淡水新产品之一，丰富渔业市场", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;青鱼&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "未知", "place": "公明镇", "event": "引进的淡水新产品之一，丰富渔业市场", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;罗非鱼&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "未知", "place": "公明镇", "event": "引进的淡水新产品之一，丰富渔业市场", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;泰国野鲮&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "未知", "place": "公明镇", "event": "引进的淡水新产品之一，丰富渔业市场", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;鲫鱼&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "未知", "place": "公明镇", "event": "引进的淡水新产品之一，丰富渔业市场", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;鳙鱼&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "未知", "place": "公明镇", "event": "引进的淡水新产品之一，丰富渔业市场", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;鲢鱼&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "未知", "place": "公明镇", "event": "引进的淡水新产品之一，丰富渔业市场", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;鲤鱼&quot;">
+  <data key="d0">"组织名称"</data>
+  <data key="d1">{"time": "未知", "place": "公明镇", "event": "引进的淡水新产品之一，丰富渔业市场", other: ""}</data>
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+</node>
+<node id="&quot;1448头黄牛&quot;">
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+  <data key="d1">"1973年公明镇从事农役的黄牛数量为1448头"</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;黄牛和水牛&quot;">
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+  <data key="d1">"2004年黄牛和水牛的数量均减少至10头"</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;22430只生猪&quot;">
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+  <data key="d1">"1973年公明镇生猪饲养量为22430只，后有所增加"</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;公明镇养鸡场&quot;">
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+  <data key="d1">"用于公明镇养鸡业，并取得良好效益"</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;康达尔128黄鸡父母代&quot;">
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+  <data key="d1">"用于公明镇养鸡业，并取得良好效益"</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<node id="&quot;玉律村&quot;">
+  <data key="d2">chunk-3bde725d99e746c4d3367778f002576c</data>
+  <data key="d1">"水鱼场位于玉律村，是公明渔业的重要组成部分"</data>
+  <data key="d0">"UNKNOWN"</data>
+</node>
+<edge source="&quot;公明镇&quot;" target="&quot;黄牛&quot;">
+  <data key="d3">12.0</data>
+  <data key="d4">"黄牛是公明镇的主要耕牛，数量和用途发生变化"</data>
+  <data key="d5">"耕畜养殖"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;公明镇&quot;" target="&quot;水牛&quot;">
+  <data key="d3">10.0</data>
+  <data key="d4">"水牛在改革开放后逐渐减少"</data>
+  <data key="d5">"农业转型"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;公明镇&quot;" target="&quot;养猪场&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"养猪场数量和规模有所变化"</data>
+  <data key="d5">"畜牧业发展"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;公明镇&quot;" target="&quot;1448头黄牛&quot;">
+  <data key="d3">6.0</data>
+  <data key="d4">"1973年公明镇从事农役的黄牛数量为1448头"</data>
+  <data key="d5">"历史数据"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;公明镇&quot;" target="&quot;22430只生猪&quot;">
+  <data key="d3">12.0</data>
+  <data key="d4">"1973年公明镇生猪饲养量为22430只，后有所增加"</data>
+  <data key="d5">"养猪业发展"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;公明镇&quot;" target="&quot;渔业&quot;">
+  <data key="d3">14.0</data>
+  <data key="d4">"公明镇渔业发展和成就突出"</data>
+  <data key="d5">"渔业发展"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;2004年&quot;" target="&quot;黄牛和水牛&quot;">
+  <data key="d3">10.0</data>
+  <data key="d4">"2004年黄牛和水牛的数量均减少至10头"</data>
+  <data key="d5">"农业退化"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;水鱼场&quot;" target="&quot;玉律村&quot;">
+  <data key="d3">12.0</data>
+  <data key="d4">"水鱼场位于玉律村，是公明渔业的重要组成部分"</data>
+  <data key="d5">"水产养殖基地"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;渔业&quot;" target="&quot;生鱼&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"生鱼是引进的淡水新产品之一，丰富了渔业市场"</data>
+  <data key="d5">"养殖品种多样化"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;渔业&quot;" target="&quot;桂花鱼&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"桂花鱼是引进的淡水新产品之一，丰富了渔业市场"</data>
+  <data key="d5">"养殖品种多样化"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;渔业&quot;" target="&quot;加州鲈鱼&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"加州鲈鱼是引进的淡水新产品之一，丰富了渔业市场"</data>
+  <data key="d5">"养殖品种多样化"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;渔业&quot;" target="&quot;白鲳&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"白鲳是引进的淡水新产品之一，丰富了渔业市场"</data>
+  <data key="d5">"养殖品种多样化"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;渔业&quot;" target="&quot;鳗鱼&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"鳗鱼是引进的淡水新产品之一，丰富了渔业市场"</data>
+  <data key="d5">"养殖品种多样化"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;渔业&quot;" target="&quot;青鱼&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"青鱼是引进的淡水新产品之一，丰富了渔业市场"</data>
+  <data key="d5">"养殖品种多样化"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;渔业&quot;" target="&quot;罗非鱼&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"罗非鱼是引进的淡水新产品之一，丰富了渔业市场"</data>
+  <data key="d5">"养殖品种多样化"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;渔业&quot;" target="&quot;泰国野鲮&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"泰国野鲮是引进的淡水新产品之一，丰富了渔业市场"</data>
+  <data key="d5">"养殖品种多样化"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;渔业&quot;" target="&quot;鲫鱼&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"鲫鱼是引进的淡水新产品之一，丰富了渔业市场"</data>
+  <data key="d5">"养殖品种多样化"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;渔业&quot;" target="&quot;鳙鱼&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"鳙鱼是引进的淡水新产品之一，丰富了渔业市场"</data>
+  <data key="d5">"养殖品种多样化"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;渔业&quot;" target="&quot;鲢鱼&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"鲢鱼是引进的淡水新产品之一，丰富了渔业市场"</data>
+  <data key="d5">"养殖品种多样化"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;渔业&quot;" target="&quot;鲤鱼&quot;">
+  <data key="d3">8.0</data>
+  <data key="d4">"鲤鱼是引进的淡水新产品之一，丰富了渔业市场"</data>
+  <data key="d5">"养殖品种多样化"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;鱼苗场&quot;" target="&quot;玉律村&quot;">
+  <data key="d3">10.0</data>
+  <data key="d4">"1960年，政府扶持下的鱼苗场建立在玉律村，为渔业提供支持"</data>
+  <data key="d5">"政策支持"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+<edge source="&quot;公明镇养鸡场&quot;" target="&quot;康达尔128黄鸡父母代&quot;">
+  <data key="d3">14.0</data>
+  <data key="d4">"用于公明镇养鸡业，并取得良好效益"</data>
+  <data key="d5">"养鸡技术进步"</data>
+  <data key="d6">chunk-3bde725d99e746c4d3367778f002576c</data>
+</edge>
+</graph></graphml>

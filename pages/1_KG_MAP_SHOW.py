@@ -11,7 +11,7 @@ from datetime import datetime
 import plotly.graph_objects as go
 import numpy as np
 
-WORKING_DIR = "./dickens1"
+WORKING_DIR = "./knowledge_base"
 
 
 def read_graphml(file_path):  
