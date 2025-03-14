@@ -4,7 +4,13 @@ import pandas as pd
 import streamlit as st
 import re
 
-from utils.csv_utils import clean_markdown_csv, fix_csv_text, parse_csv_with_pipe_quotechar
+from utils.csv_utils import (
+    clean_markdown_csv, 
+    fix_csv_text, 
+    parse_csv_with_pipe_quotechar, 
+    process_irregular_line_breaks,
+    has_irregular_line_breaks
+)
 
 def display_entities(context: str, entity_count: float):
     """显示实体信息"""
@@ -23,6 +29,11 @@ def display_entities(context: str, entity_count: float):
                 return
             
             csv_text_cleaned = clean_markdown_csv(entities_text)
+            
+            # 检查并处理不规则换行
+            if has_irregular_line_breaks(csv_text_cleaned):
+                csv_text_cleaned = process_irregular_line_breaks(csv_text_cleaned)
+            
             final_entities_text = parse_csv_with_pipe_quotechar(csv_text_cleaned)
             
             # 尝试不同的分隔符
@@ -57,10 +68,50 @@ def display_relationships(context: str, relation_count: float):
     if "-----关系-----" in context:
         try:
             relationships_text = context.split("-----关系-----")[1].split("-----信息来源-----")[0].strip()
-            relationships_df = pd.read_csv(io.StringIO(relationships_text))
-            st.dataframe(relationships_df)
+            # 添加预处理步骤
+            if not relationships_text:
+                st.warning("没有找到关系数据")
+                return
+            
+            # 检查是否是CSV格式
+            if not any(c in relationships_text for c in [',', '\t', '|', '+']):
+                st.text(relationships_text)
+                return
+            
+            csv_text_cleaned = clean_markdown_csv(relationships_text)
+            
+            # 检查并处理不规则换行
+            if has_irregular_line_breaks(csv_text_cleaned):
+                csv_text_cleaned = process_irregular_line_breaks(csv_text_cleaned)
+            
+            final_relationships_text = parse_csv_with_pipe_quotechar(csv_text_cleaned)
+            
+            # 尝试不同的分隔符
+            separators = ['+', ',', '\t', '|']
+            df = None
+            
+            for sep in separators:
+                try:
+                    df = pd.read_csv(
+                        io.StringIO(final_relationships_text),
+                        sep=sep,
+                        quotechar=None,
+                        quoting=csv.QUOTE_NONE,
+                        engine="python",
+                        on_bad_lines='skip'  # 跳过有问题的行
+                    )
+                    if not df.empty:
+                        break
+                except Exception:
+                    continue
+            
+            if df is not None and not df.empty:
+                st.dataframe(df)
+            else:
+                st.text(relationships_text)
+                
         except Exception as e:
-            st.text(f"Error parsing relationships: {e}")
+            st.error(f"解析关系数据时出错: {str(e)}")
             st.text(relationships_text)
 
 def display_sources(context: str, doc_count: float):
@@ -78,7 +129,6 @@ def display_sources(context: str, doc_count: float):
         except Exception as e:
             st.text(f"Error parsing sources: {e}")
             st.text(sources_text)
-
 def format_sources_to_markdown(df: pd.DataFrame) -> str:
     """将数据框格式化为Markdown文本"""
     markdown_content = ""
