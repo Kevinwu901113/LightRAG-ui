@@ -90,14 +90,6 @@ h1, h2, h3 {
     background-color: #252525;
 }
 
-.streamlit-expanderHeader p{
-    color: rgb(255, 255, 255);  
-}
-
-[class*="st-key-custom1"] .streamlit-expanderHeader {
-    color: rgb(255, 255, 255);
-}
-
 /* 卡片和容器样式 */
 .stExpander, .css-12w0qpk {
     background-color: #2a2a2a00;
@@ -117,31 +109,4 @@ a {
 /* 切换按钮样式 */
 .stCheckbox label span {
     color: #e0e0e0;
-}
-
-.user-bubble {
-    background-color: #e6f7ff;
-    border-radius: 15px;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    color: black !important;
-}
-
-/* 机器人气泡样式 */
-.bot-bubble {
-    background-color: #f0f0f0;
-    border-radius: 15px;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    color: black !important;
-}
-
-/* 确保所有对话文本为黑色 */
-/* .stChatMessage div[data-testid="stMarkdownContainer"] p {
-    color: black !important;
-} */
-
-/* 修复滚动条问题 */
-.stApp {
-    padding-bottom: 6rem !important;
 }

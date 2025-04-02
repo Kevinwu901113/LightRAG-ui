@@ -27,7 +27,7 @@ from tenacity import (
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 from pydantic import BaseModel, Field
-from typing import List, Dict, Callable, Any
+from typing import List, Dict, Callable, Any, AsyncGenerator
 from .base import BaseKVStorage
 from .utils import compute_args_hash, wrap_embedding_func_with_attrs
 
@@ -521,17 +521,17 @@ async def hf_model_complete(
     )
 
 
-async def ollama_model_complete(
-    prompt, system_prompt=None, history_messages=[], **kwargs
-) -> str:
-    model_name = kwargs["hashing_kv"].global_config["llm_model_name"]
-    return await ollama_model_if_cache(
-        model_name,
-        prompt,
-        system_prompt=system_prompt,
-        history_messages=history_messages,
-        **kwargs,
-    )
+# async def ollama_model_complete(
+#     prompt, system_prompt=None, history_messages=[], **kwargs
+# ) -> str:
+#     model_name = kwargs["hashing_kv"].global_config["llm_model_name"]
+#     return await ollama_model_if_cache(
+#         model_name,
+#         prompt,
+#         system_prompt=system_prompt,
+#         history_messages=history_messages,
+#         **kwargs,
+#     )
 
 
 @wrap_embedding_func_with_attrs(embedding_dim=1536, max_token_size=8192)
@@ -808,3 +808,138 @@ if __name__ == "__main__":
         print(result)
 
     asyncio.run(main())
+
+
+async def ollama_model_stream(prompt: str, **kwargs) -> AsyncGenerator[str, None]:
+    """
+    使用Ollama模型流式生成文本
+    
+    Args:
+        prompt: 提示文本
+        **kwargs: 其他参数
+        
+    Yields:
+        生成的文本片段
+    """
+    import ollama
+    
+    host = kwargs.get("host", "http://localhost:11434")
+    model = kwargs.get("model", "qwen2.5:7b-instruct-fp16")
+    options = kwargs.get("options", {})
+    
+    try:
+        async for chunk in ollama.AsyncClient(host=host).generate(
+            model=model,
+            prompt=prompt,
+            options=options,
+            stream=True
+        ):
+            if chunk.get("response"):
+                yield chunk["response"]
+    except Exception as e:
+        print(f"Error in ollama_model_stream: {e}")
+        yield f"Error: {str(e)}"
+
+async def ollama_model_complete(
+    prompt, system_prompt=None, history_messages=[], stream=False, **kwargs
+) -> str:
+    """
+    使用Ollama模型生成文本
+    
+    Args:
+        prompt: 提示文本
+        system_prompt: 系统提示
+        history_messages: 历史消息
+        stream: 是否使用流式输出
+        **kwargs: 其他参数
+        
+    Returns:
+        生成的文本或文本生成器
+    """
+    if stream:
+        return ollama_model_stream(prompt, system_prompt, history_messages, **kwargs)
+    
+    model_name = kwargs.get("model", kwargs.get("hashing_kv", {}).global_config.get("llm_model_name", "qwen2.5:7b-instruct-fp16"))
+    
+    # 移除不支持的参数
+    kwargs.pop("max_tokens", None)
+    kwargs.pop("response_format", None)
+    kwargs.pop("hashing_kv", None)  # 移除 hashing_kv 参数
+    host = kwargs.pop("host", None)
+    timeout = kwargs.pop("timeout", None)
+    if 'options' not in kwargs or not isinstance(kwargs['options'], dict):
+        kwargs['options'] = {}  # 如果不存在或不是字典，则初始化为空字典
+    
+    ollama_client = ollama.AsyncClient(host=host, timeout=timeout)
+    messages = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+
+    hashing_kv = kwargs.pop("hashing_kv", None)
+    messages.extend(history_messages)
+    messages.append({"role": "user", "content": prompt})
+    if hashing_kv is not None:
+        args_hash = compute_args_hash(model_name, messages)
+        if_cache_return = await hashing_kv.get_by_id(args_hash)
+        if if_cache_return is not None:
+            return if_cache_return["return"]
+
+    response = await ollama_client.chat(model=model_name, messages=messages, **kwargs)
+
+    result = response["message"]["content"]
+
+    if hashing_kv is not None:
+        await hashing_kv.upsert({args_hash: {"return": result, "model": model_name}})
+
+    return result
+
+async def ollama_model_stream(
+    prompt, system_prompt=None, history_messages=[], **kwargs
+) -> AsyncGenerator[str, None]:
+    """
+    使用Ollama模型流式生成文本
+    
+    Args:
+        prompt: 提示文本
+        system_prompt: 系统提示
+        history_messages: 历史消息
+        **kwargs: 其他参数
+        
+    Yields:
+        生成的文本片段
+    """
+    model_name = kwargs.get("model", kwargs.get("hashing_kv", {}).global_config.get("llm_model_name", "qwen2.5:7b-instruct-fp16"))
+    
+    # 移除不支持的参数
+    kwargs.pop("max_tokens", None)
+    kwargs.pop("response_format", None)
+    kwargs.pop("hashing_kv", None)  # 移除 hashing_kv 参数
+    host = kwargs.pop("host", None)
+    timeout = kwargs.pop("timeout", None)
+    if 'options' not in kwargs or not isinstance(kwargs['options'], dict):
+        kwargs['options'] = {}  # 如果不存在或不是字典，则初始化为空字典
+    
+    ollama_client = ollama.AsyncClient(host=host, timeout=timeout)
+    messages = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    
+    messages.extend(history_messages)
+    messages.append({"role": "user", "content": prompt})
+    
+    try:
+        # 修复：先使用await获取异步迭代器
+        response = await ollama_client.chat(
+            model=model_name,
+            messages=messages,
+            stream=True,
+            **kwargs
+        )
+        
+        # 然后使用async for循环迭代结果
+        async for chunk in response:
+            if chunk.get("message", {}).get("content"):
+                yield chunk["message"]["content"]
+    except Exception as e:
+        print(f"Error in ollama_model_stream: {e}")
+        yield f"Error: {str(e)}"

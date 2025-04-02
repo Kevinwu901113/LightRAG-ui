@@ -465,7 +465,9 @@ async def local_query(
         except json.JSONDecodeError as e:
             print(f"JSON parsing error: {e}")
             return PROMPTS["fail_response"]
-    
+    if keywords:
+        if "公明镇" in keywords and len(keywords)>1:
+            keywords=[x for x in keywords if x!="公明镇"]
     if keywords:
         context = await _build_local_query_context(
             workdir,
@@ -764,6 +766,9 @@ async def global_query(
             print(f"JSON parsing error: {e}")
             return PROMPTS["fail_response"]
     if keywords:
+        if "公明镇" in keywords and len(keywords)>1:
+            keywords=[x for x in keywords if x!="公明镇"]
+
         context = await _build_global_query_context(
             keywords,
             knowledge_graph_inst,

@@ -159,7 +159,7 @@ def init_session_state():
         'unlimited_entity': True,
         'unlimited_relation': True,
         'unlimited_doc': True,
-        'llm_model': 'deepseek-chat',  # 添加默认模型
+        'llm_model': 'qwen2.5',  # 添加默认模型
         'kb_params':{'custom_work_folder':WORKING_DIR},
         'show_settings': False,  # 默认不显示设置面板
         'use_knowledge_base': True,  # 默认启用知识库
